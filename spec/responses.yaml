@@ -1,0 +1,62 @@
+openapi: 3.0.3
+info:
+  title: http responses
+  description: http responses
+  version: 1.0.0
+paths: {}
+
+components:
+  responses:
+    200:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/OkResponse'
+    400:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/BadRequestResponse'
+    404:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NotFoundResponse'
+    500:
+      description: Internal Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/InternalErrorResponse'
+
+  schemas:
+    OkResponse:
+      type: object
+      properties:
+        data:
+          type: string
+          description: OK
+
+    BadRequestResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Bad request
+
+    NotFoundResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Object not found
+
+    InternalErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Internal Server Error

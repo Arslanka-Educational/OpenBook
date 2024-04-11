@@ -1,0 +1,149 @@
+openapi: 3.0.3
+info:
+  title: components
+  description: Title
+  version: 1.0.0
+paths: {}
+
+components:
+  schemas:
+    BookResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: UUID
+        name:
+          type: string
+          description: name of a book
+        authorId:
+          type: string
+          description: foreign key to a book's author
+        publicationId:
+          type: string
+          description: key to a book publication id
+        libraryId:
+          type: string
+          description: library this is in
+        description:
+          type: string
+          description: description of a book
+
+    BookId:
+      type: object
+      properties:
+        id:
+          type: string
+          description: UUID
+
+    BookAddRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: name of a book
+        authorId:
+          type: string
+          description: foreign key to a book's author
+        publicationId:
+          type: string
+          description: key to a book publication id
+        description:
+          type: string
+          description: description of a book
+        libraryId:
+          type: string
+          description: library this is in
+
+    AuthorResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: UUID
+        name:
+          type: string
+          description: author's name
+        booksCount:
+          type: integer
+          description: count of author's published books
+
+    AuthorAddRequest:
+      type: object
+      properties:
+        id:
+          type: string
+          description: UUID
+        name:
+          type: string
+          description: author's name
+
+    AuthorId:
+      type: object
+      properties:
+        id:
+          type: string
+          description: UUID
+
+    UserRequest:
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+          description: entered password
+        email:
+          type: string
+          description: user's email with validation
+
+    UserResponse:
+      type: object
+      properties:
+        uid:
+          type: string
+          description: UUID
+        username:
+          type: string
+        password:
+          type: string
+          description: user's decoded password
+        email:
+          type: string
+        creationDate:
+          type: string
+          description: user creation date
+
+    LibraryResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: UUID
+        name:
+          type: string
+          description: library's name
+        city:
+          type: string
+          description: city library located
+        street:
+          type: string
+
+    LibraryId:
+      type: object
+      properties:
+        id:
+          type: string
+          description: UUID
+
+    LibraryAddRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: library's name
+        city:
+          type: string
+          description: city library located
+        street:
+          type: string
