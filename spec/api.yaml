@@ -7,23 +7,21 @@ servers:
   - url: 'http://localhost:8080'
 
 paths:
-  /v1/book/get/{book_id}:
+  /v1/book/get-info/{book_id}:
     get:
       parameters:
         - in: path
           name: book_id
           required: true
           schema:
-            $ref: './components.yaml#/components/schemas/BookId'
+            type: string
       responses:
         200:
           description: OK
           content:
             application/json:
               schema:
-                $ref: './components.yaml#/components/schemas/BookResponse'
-        304:
-          description: Not modified
+                $ref: './definitions.yaml#/components/schemas/BookInfoResponse'
         400:
           $ref: './responses.yaml#/components/responses/400'
         404:
@@ -31,45 +29,21 @@ paths:
         500:
           $ref: './responses.yaml#/components/responses/500'
 
-  /v1/book/add:
-    post:
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: './components.yaml#/components/schemas/BookAddRequest'
-      responses:
-        200:
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: './components.yaml#/components/schemas/BookResponse'
-        304:
-          description: Not modified
-        400:
-          $ref: './responses.yaml#/components/responses/400'
-        500:
-          $ref: './responses.yaml#/components/responses/500'
-
-  /v1/author/get/{author_id}:
+  /v1/author/get-info/{author_id}:
     get:
       parameters:
         - in: path
           name: author_id
           required: true
           schema:
-            $ref: './components.yaml#/components/schemas/AuthorId'
+            type: string
       responses:
         200:
           description: OK
           content:
             application/json:
               schema:
-                $ref: './components.yaml#/components/schemas/AuthorResponse'
-        304:
-          description: Not modified
+                $ref: './definitions.yaml#/components/schemas/AuthorInfoResponse'
         400:
           $ref: './responses.yaml#/components/responses/400'
         404:
@@ -77,70 +51,24 @@ paths:
         500:
           $ref: './responses.yaml#/components/responses/500'
 
-  /v1/author/add:
-    post:
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: './components.yaml#/components/schemas/AuthorAddRequest'
-      responses:
-        200:
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: './components.yaml#/components/schemas/AuthorResponse'
-        304:
-          description: Not modified
-        400:
-          $ref: './responses.yaml#/components/responses/400'
-        500:
-          $ref: './responses.yaml#/components/responses/500'
-
-  /v1/library/get/{library_id}:
+  /v1/library/get-info/{library_id}:
     get:
       parameters:
         - in: path
           name: library_id
           required: true
           schema:
-            $ref: './components.yaml#/components/schemas/LibraryId'
+            type: string
       responses:
         200:
           description: OK
           content:
             application/json:
               schema:
-                $ref: './components.yaml#/components/schemas/LibraryResponse'
-        304:
-          description: Not modified
+                $ref: './definitions.yaml#/components/schemas/LibraryInfoResponse'
         400:
           $ref: './responses.yaml#/components/responses/400'
         404:
           $ref: './responses.yaml#/components/responses/404'
-        500:
-          $ref: './responses.yaml#/components/responses/500'
-
-  /v1/library/add:
-    post:
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: './components.yaml#/components/schemas/LibraryAddRequest'
-      responses:
-        200:
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: './components.yaml#/components/schemas/AuthorResponse'
-        304:
-          description: Not modified
-        400:
-          $ref: './responses.yaml#/components/responses/400'
         500:
           $ref: './responses.yaml#/components/responses/500'
