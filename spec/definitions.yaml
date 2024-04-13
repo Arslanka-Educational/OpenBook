@@ -12,18 +12,21 @@ components:
       properties:
         id:
           type: string
-          description: UUID
+          format: uuid
         name:
           type: string
           description: name of a book
         authorId:
           type: string
+          format: uuid
           description: foreign key to a book's author
         publicationId:
           type: string
+          format: uuid
           description: key to a book publication id
         libraryId:
           type: string
+          format: uuid
           description: library this is in
         description:
           type: string
@@ -37,15 +40,18 @@ components:
           description: name of a book
         authorId:
           type: string
+          format: uuid
           description: foreign key to a book's author
         publicationId:
           type: string
+          format: uuid
           description: key to a book publication id
         description:
           type: string
           description: description of a book
         libraryId:
           type: string
+          format: uuid
           description: library this is in
 
     AuthorInfoResponse:
@@ -53,7 +59,7 @@ components:
       properties:
         id:
           type: string
-          description: UUID
+          format: uuid
         name:
           type: string
           description: author's name
@@ -66,12 +72,12 @@ components:
       properties:
         id:
           type: string
-          description: UUID
+          format: uuid
         name:
           type: string
           description: author's name
 
-    UserRequest:
+    UserLoginRequest:
       type: object
       properties:
         username:
@@ -83,7 +89,7 @@ components:
           type: string
           description: user's email with validation
 
-    UserResponse:
+    UserLoginResponse:
       type: object
       properties:
         uid:
@@ -102,7 +108,7 @@ components:
       properties:
         id:
           type: string
-          description: UUID
+          format: uuid
         name:
           type: string
           description: library's name

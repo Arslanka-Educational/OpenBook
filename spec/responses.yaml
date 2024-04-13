@@ -13,24 +13,12 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/OkResponse'
-    400:
-      description: Bad request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/BadRequestResponse'
     404:
       description: Not Found
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/NotFoundResponse'
-    500:
-      description: Internal Error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/InternalErrorResponse'
 
   schemas:
     OkResponse:
