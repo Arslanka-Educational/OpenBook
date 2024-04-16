@@ -7,7 +7,7 @@ paths: {}
 
 components:
   schemas:
-    BookInfoResponse:
+    BookDetailsResponse:
       type: object
       properties:
         id:
@@ -32,7 +32,7 @@ components:
           type: string
           description: description of a book
 
-    BookAddRequest:
+    BookCreateRequest:
       type: object
       properties:
         name:
@@ -54,7 +54,7 @@ components:
           format: uuid
           description: library this is in
 
-    AuthorInfoResponse:
+    AuthorDetailsResponse:
       type: object
       properties:
         id:
@@ -67,12 +67,9 @@ components:
           type: integer
           description: count of author's published books
 
-    AuthorAddRequest:
+    AuthorCreateRequest:
       type: object
       properties:
-        id:
-          type: string
-          format: uuid
         name:
           type: string
           description: author's name
@@ -103,7 +100,7 @@ components:
           type: string
           format: date-time
 
-    LibraryInfoResponse:
+    LibraryDetailsResponse:
       type: object
       properties:
         id:
@@ -118,7 +115,7 @@ components:
         street:
           type: string
 
-    LibraryAddRequest:
+    LibraryCreateRequest:
       type: object
       properties:
         name:

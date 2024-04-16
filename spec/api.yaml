@@ -7,7 +7,7 @@ servers:
   - url: 'http://localhost:8080'
 
 paths:
-  /v1/book/info/{book_id}:
+  /v1/book/details/{book_id}:
     get:
       parameters:
         - in: path
@@ -21,11 +21,27 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './definitions.yaml#/components/schemas/BookInfoResponse'
+                $ref: './definitions.yaml#/components/schemas/BookDetailsResponse'
         404:
           $ref: './responses.yaml#/components/responses/404'
 
-  /v1/author/info/{author_id}:
+  /v1/book/create:
+    post:
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: './definitions.yaml#/components/schemas/BookCreateRequest'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: './definitions.yaml#/components/schemas/BookDetailsResponse'
+
+  /v1/author/details/{author_id}:
     get:
       parameters:
         - in: path
@@ -39,11 +55,27 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './definitions.yaml#/components/schemas/AuthorInfoResponse'
+                $ref: './definitions.yaml#/components/schemas/AuthorDetailsResponse'
         404:
           $ref: './responses.yaml#/components/responses/404'
 
-  /v1/library/info/{library_id}:
+  /v1/author/create:
+    post:
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: './definitions.yaml#/components/schemas/AuthorCreateRequest'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: './definitions.yaml#/components/schemas/AuthorDetailsResponse'
+
+  /v1/library/details/{library_id}:
     get:
       parameters:
         - in: path
@@ -57,6 +89,22 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './definitions.yaml#/components/schemas/LibraryInfoResponse'
+                $ref: './definitions.yaml#/components/schemas/LibraryDetailsResponse'
         404:
           $ref: './responses.yaml#/components/responses/404'
+
+  /v1/library/create:
+    post:
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: './definitions.yaml#/components/schemas/LibraryCreateRequest'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: './definitions.yaml#/components/schemas/LibraryDetailsResponse'
