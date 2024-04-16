@@ -7,7 +7,7 @@ servers:
   - url: 'http://localhost:8080'
 
 paths:
-  /v1/book/get-info/{book_id}:
+  /v1/book/info/{book_id}:
     get:
       parameters:
         - in: path
@@ -25,7 +25,7 @@ paths:
         404:
           $ref: './responses.yaml#/components/responses/404'
 
-  /v1/author/get-info/{author_id}:
+  /v1/author/info/{author_id}:
     get:
       parameters:
         - in: path
@@ -43,7 +43,7 @@ paths:
         404:
           $ref: './responses.yaml#/components/responses/404'
 
-  /v1/library/get-info/{library_id}:
+  /v1/library/info/{library_id}:
     get:
       parameters:
         - in: path
