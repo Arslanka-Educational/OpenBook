@@ -1,0 +1,128 @@
+openapi: 3.0.3
+info:
+  title: components
+  description: Title
+  version: 1.0.0
+paths: {}
+
+components:
+  schemas:
+    BookDetailsResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+          description: name of a book
+        authorId:
+          type: string
+          format: uuid
+          description: foreign key to a book's author
+        publicationId:
+          type: string
+          format: uuid
+          description: key to a book publication id
+        libraryId:
+          type: string
+          format: uuid
+          description: library this is in
+        description:
+          type: string
+          description: description of a book
+
+    BookCreateRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: name of a book
+        authorId:
+          type: string
+          format: uuid
+          description: foreign key to a book's author
+        publicationId:
+          type: string
+          format: uuid
+          description: key to a book publication id
+        description:
+          type: string
+          description: description of a book
+        libraryId:
+          type: string
+          format: uuid
+          description: library this is in
+
+    AuthorDetailsResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+          description: author's name
+        booksCount:
+          type: integer
+          description: count of author's published books
+
+    AuthorCreateRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: author's name
+
+    UserLoginRequest:
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+          description: entered password
+        email:
+          type: string
+          description: user's email with validation
+
+    UserLoginResponse:
+      type: object
+      properties:
+        uid:
+          type: string
+          description: UUID
+        username:
+          type: string
+        email:
+          type: string
+        creationDate:
+          type: string
+          format: date-time
+
+    LibraryDetailsResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+          description: library's name
+        city:
+          type: string
+          description: city library located
+        street:
+          type: string
+
+    LibraryCreateRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: library's name
+        city:
+          type: string
+          description: city library located
+        street:
+          type: string
