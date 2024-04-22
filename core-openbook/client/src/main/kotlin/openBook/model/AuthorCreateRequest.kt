@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty
  */
 data class AuthorCreateRequest(
 
-    @get:JsonProperty("name") val name: kotlin.String? = null
+    @get:JsonProperty("name", required = true) val name: kotlin.String
 ) {
 
 }

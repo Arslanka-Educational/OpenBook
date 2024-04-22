@@ -11,11 +11,11 @@ import com.fasterxml.jackson.annotation.JsonProperty
  */
 data class LibraryCreateRequest(
 
-    @get:JsonProperty("name") val name: kotlin.String? = null,
+    @get:JsonProperty("name", required = true) val name: kotlin.String,
 
-    @get:JsonProperty("city") val city: kotlin.String? = null,
+    @get:JsonProperty("city", required = true) val city: kotlin.String,
 
-    @get:JsonProperty("street") val street: kotlin.String? = null
+    @get:JsonProperty("street", required = true) val street: kotlin.String
 ) {
 
 }

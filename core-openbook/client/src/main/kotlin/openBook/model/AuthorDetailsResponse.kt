@@ -11,11 +11,11 @@ import com.fasterxml.jackson.annotation.JsonProperty
  */
 data class AuthorDetailsResponse(
 
-    @get:JsonProperty("id") val id: java.util.UUID? = null,
+    @get:JsonProperty("id", required = true) val id: java.util.UUID,
 
-    @get:JsonProperty("name") val name: kotlin.String? = null,
+    @get:JsonProperty("name", required = true) val name: kotlin.String,
 
-    @get:JsonProperty("booksCount") val booksCount: kotlin.Int? = null
+    @get:JsonProperty("booksCount", required = true) val booksCount: kotlin.Int
 ) {
 
 }

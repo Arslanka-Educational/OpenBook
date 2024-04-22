@@ -12,13 +12,13 @@ import com.fasterxml.jackson.annotation.JsonProperty
  */
 data class LibraryDetailsResponse(
 
-    @get:JsonProperty("id") val id: java.util.UUID? = null,
+    @get:JsonProperty("id", required = true) val id: java.util.UUID,
 
-    @get:JsonProperty("name") val name: kotlin.String? = null,
+    @get:JsonProperty("name", required = true) val name: kotlin.String,
 
-    @get:JsonProperty("city") val city: kotlin.String? = null,
+    @get:JsonProperty("city", required = true) val city: kotlin.String,
 
-    @get:JsonProperty("street") val street: kotlin.String? = null
+    @get:JsonProperty("street", required = true) val street: kotlin.String
 ) {
 
 }

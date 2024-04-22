@@ -14,15 +14,15 @@ import com.fasterxml.jackson.annotation.JsonProperty
  */
 data class BookDetailsResponse(
 
-    @get:JsonProperty("id") val id: java.util.UUID? = null,
+    @get:JsonProperty("id", required = true) val id: java.util.UUID,
 
-    @get:JsonProperty("name") val name: kotlin.String? = null,
+    @get:JsonProperty("name", required = true) val name: kotlin.String,
 
-    @get:JsonProperty("authorId") val authorId: java.util.UUID? = null,
+    @get:JsonProperty("authorId", required = true) val authorId: java.util.UUID,
 
-    @get:JsonProperty("publicationId") val publicationId: java.util.UUID? = null,
+    @get:JsonProperty("publicationId", required = true) val publicationId: java.util.UUID,
 
-    @get:JsonProperty("libraryId") val libraryId: java.util.UUID? = null,
+    @get:JsonProperty("libraryId", required = true) val libraryId: java.util.UUID,
 
     @get:JsonProperty("description") val description: kotlin.String? = null
 ) {

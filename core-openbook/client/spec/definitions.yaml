@@ -9,6 +9,12 @@ components:
   schemas:
     BookDetailsResponse:
       type: object
+      required:
+        - id
+        - name
+        - authorId
+        - publicationId
+        - libraryId
       properties:
         id:
           type: string
@@ -34,6 +40,11 @@ components:
 
     BookCreateRequest:
       type: object
+      required:
+        - name
+        - authorId
+        - publicationId
+        - libraryId
       properties:
         name:
           type: string
@@ -56,6 +67,10 @@ components:
 
     AuthorDetailsResponse:
       type: object
+      required:
+        - id
+        - name
+        - booksCount
       properties:
         id:
           type: string
@@ -69,6 +84,8 @@ components:
 
     AuthorCreateRequest:
       type: object
+      required:
+        - name
       properties:
         name:
           type: string
@@ -76,6 +93,10 @@ components:
 
     UserLoginRequest:
       type: object
+      required:
+        - username
+        - password
+        - email
       properties:
         username:
           type: string
@@ -88,6 +109,10 @@ components:
 
     UserLoginResponse:
       type: object
+      required:
+        - uid
+        - username
+        - email
       properties:
         uid:
           type: string
@@ -96,12 +121,14 @@ components:
           type: string
         email:
           type: string
-        creationDate:
-          type: string
-          format: date-time
 
     LibraryDetailsResponse:
       type: object
+      required:
+        - id
+        - name
+        - city
+        - street
       properties:
         id:
           type: string
@@ -117,6 +144,10 @@ components:
 
     LibraryCreateRequest:
       type: object
+      required:
+        - name
+        - city
+        - street
       properties:
         name:
           type: string
