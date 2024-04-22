@@ -6,13 +6,6 @@ This Kotlin based [Spring Boot](https://spring.io/projects/spring-boot) applicat
 
 This document assumes you have either maven or gradle available, either via the wrapper or otherwise. This does not come with a gradle / maven wrapper checked in.
 
-By default a [`pom.xml`](pom.xml) file will be generated. If you specified `gradleBuildFile=true` when generating this project, a `build.gradle.kts` will also be generated. Note this uses [Gradle Kotlin DSL](https://github.com/gradle/kotlin-dsl).
-
-To build the project using maven, run:
-```bash
-mvn package && java -jar target/core-openBook-1.0.0.jar
-```
-
 To build the project using gradle, run:
 ```bash
 gradle build && java -jar build/libs/core-openBook-1.0.0.jar

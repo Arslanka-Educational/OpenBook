@@ -12,4 +12,5 @@ pluginManagement {
         }
     }
 }
-rootProject.name = "openapi-spring"
+rootProject.name = "core-openBook"
+include("client", "server")
