@@ -9,6 +9,8 @@ servers:
 paths:
   /v1/book/details/{book_id}:
     get:
+      tags:
+        - Book
       parameters:
         - in: path
           name: book_id
@@ -27,6 +29,8 @@ paths:
 
   /v1/book/create:
     post:
+      tags:
+        - Book
       requestBody:
         required: true
         content:
@@ -43,6 +47,8 @@ paths:
 
   /v1/author/details/{author_id}:
     get:
+      tags:
+        - Author
       parameters:
         - in: path
           name: author_id
@@ -61,6 +67,8 @@ paths:
 
   /v1/author/create:
     post:
+      tags:
+        - Author
       requestBody:
         required: true
         content:
@@ -77,6 +85,8 @@ paths:
 
   /v1/library/details/{library_id}:
     get:
+      tags:
+        - Library
       parameters:
         - in: path
           name: library_id
@@ -95,6 +105,8 @@ paths:
 
   /v1/library/create:
     post:
+      tags:
+        - Library
       requestBody:
         required: true
         content:

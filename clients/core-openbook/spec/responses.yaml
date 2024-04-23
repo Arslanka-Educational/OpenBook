@@ -37,8 +37,15 @@ components:
 
     NotFoundResponse:
       type: object
+      required:
+        - code
+        - errorMessage
       properties:
-        error:
+        code:
+          type: integer
+          format: int32
+          description: 404 code
+        errorMessage:
           type: string
           description: Object not found
 
