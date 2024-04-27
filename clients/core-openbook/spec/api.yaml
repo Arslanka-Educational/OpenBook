@@ -3,17 +3,15 @@ info:
   title: OpenBook
   description: OpenBook
   version: 1.0.0
-servers:
-  - url: 'http://localhost:8080'
 
 paths:
-  /v1/book/details/{book_id}:
+  /v1/book/find-by-name/{book_name}:
     get:
       tags:
         - Book
       parameters:
         - in: path
-          name: book_id
+          name: book_name
           required: true
           schema:
             type: string
@@ -23,11 +21,32 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './definitions.yaml#/components/schemas/BookDetailsResponse'
+                $ref: './definitions.yaml#/components/schemas/BookGetByNameResponse'
         404:
           $ref: './responses.yaml#/components/responses/404'
 
-  /v1/book/create:
+  /v1/book/get-by-info/{book_info_id}:
+    get:
+      tags:
+        - Book
+      parameters:
+        - in: path
+          name: book_info_id
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: './definitions.yaml#/components/schemas/BookGetByInfoIdResponse'
+        404:
+          $ref: './responses.yaml#/components/responses/404'
+
+  /v1/book/reservation:
     post:
       tags:
         - Book
@@ -36,14 +55,20 @@ paths:
         content:
           application/json:
             schema:
-              $ref: './definitions.yaml#/components/schemas/BookCreateRequest'
+              type: object
+              properties:
+                book_id:
+                  type: string
+                  format: uuid
       responses:
         200:
           description: OK
           content:
             application/json:
               schema:
-                $ref: './definitions.yaml#/components/schemas/BookDetailsResponse'
+                type: array
+                items:
+                  $ref: './definitions.yaml#/components/schemas/BookReserveResponse'
 
   /v1/author/details/{author_id}:
     get:
@@ -55,6 +80,7 @@ paths:
           required: true
           schema:
             type: string
+            format: uuid
       responses:
         200:
           description: OK
@@ -64,24 +90,6 @@ paths:
                 $ref: './definitions.yaml#/components/schemas/AuthorDetailsResponse'
         404:
           $ref: './responses.yaml#/components/responses/404'
-
-  /v1/author/create:
-    post:
-      tags:
-        - Author
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: './definitions.yaml#/components/schemas/AuthorCreateRequest'
-      responses:
-        200:
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: './definitions.yaml#/components/schemas/AuthorDetailsResponse'
 
   /v1/library/details/{library_id}:
     get:
@@ -93,6 +101,7 @@ paths:
           required: true
           schema:
             type: string
+            format: uuid
       responses:
         200:
           description: OK
@@ -102,21 +111,3 @@ paths:
                 $ref: './definitions.yaml#/components/schemas/LibraryDetailsResponse'
         404:
           $ref: './responses.yaml#/components/responses/404'
-
-  /v1/library/create:
-    post:
-      tags:
-        - Library
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: './definitions.yaml#/components/schemas/LibraryCreateRequest'
-      responses:
-        200:
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: './definitions.yaml#/components/schemas/LibraryDetailsResponse'

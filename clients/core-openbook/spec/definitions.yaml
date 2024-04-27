@@ -3,18 +3,21 @@ info:
   title: components
   description: Title
   version: 1.0.0
-paths: {}
+paths: { }
 
 components:
   schemas:
-    BookDetailsResponse:
+    BookGetByNameResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/BookInfo'
+
+    BookInfo:
       type: object
       required:
         - id
         - name
         - authorId
-        - publicationId
-        - libraryId
       properties:
         id:
           type: string
@@ -26,67 +29,75 @@ components:
           type: string
           format: uuid
           description: foreign key to a book's author
-        publicationId:
-          type: string
-          format: uuid
-          description: key to a book publication id
-        libraryId:
-          type: string
-          format: uuid
-          description: library this is in
-        description:
-          type: string
-          description: description of a book
 
-    BookCreateRequest:
+    BookGetByInfoIdResponse:
       type: object
       required:
-        - name
-        - authorId
-        - publicationId
-        - libraryId
+        - bookInfoId
+        - books
       properties:
-        name:
-          type: string
-          description: name of a book
-        authorId:
+        bookInfoId:
           type: string
           format: uuid
-          description: foreign key to a book's author
-        publicationId:
+        books:
+          type: array
+          items:
+            $ref: '#/components/schemas/Book'
+          default: []
+
+    BookStatus:
+      type: string
+      enum:
+        - AVAILABLE
+        - UNAVAILABLE
+      default: 'UNAVAILABLE'
+
+    Book:
+      type: object
+      required:
+        - id
+        - publisherId
+        - libraryId
+        - bookInfoId
+        - status
+      properties:
+        id:
+          type: string
+          format: uuid
+        bookInfoId:
+          type: string
+          format: uuid
+        publisherId:
           type: string
           format: uuid
           description: key to a book publication id
-        description:
-          type: string
-          description: description of a book
         libraryId:
           type: string
           format: uuid
           description: library this is in
+        status:
+          $ref: '#/components/schemas/BookStatus'
+
+    BookReserveResponse:
+      type: object
+      required:
+      properties:
+        reserved_date:
+          type: string
+          format: date
+        reservation_expiration_date:
+          type: string
+          format: date
 
     AuthorDetailsResponse:
       type: object
       required:
         - id
         - name
-        - booksCount
       properties:
         id:
           type: string
           format: uuid
-        name:
-          type: string
-          description: author's name
-        booksCount:
-          type: integer
-          description: count of author's published books
-
-    AuthorCreateRequest:
-      type: object
-      required:
-        - name
-      properties:
         name:
           type: string
           description: author's name
@@ -133,22 +144,6 @@ components:
         id:
           type: string
           format: uuid
-        name:
-          type: string
-          description: library's name
-        city:
-          type: string
-          description: city library located
-        street:
-          type: string
-
-    LibraryCreateRequest:
-      type: object
-      required:
-        - name
-        - city
-        - street
-      properties:
         name:
           type: string
           description: library's name

@@ -1,16 +1,18 @@
 package openbook.controller
 
 import openBook.api.AuthorApi
-import openBook.model.AuthorCreateRequest
 import openBook.model.AuthorDetailsResponse
+import openbook.service.AuthorService
 import org.springframework.http.ResponseEntity
+import org.springframework.web.bind.annotation.RestController
+import java.util.UUID
 
-class AuthorController : AuthorApi {
-    override fun v1AuthorCreatePost(authorCreateRequest: AuthorCreateRequest): ResponseEntity<AuthorDetailsResponse> {
-        TODO("Not yet implemented")
-    }
-
-    override fun v1AuthorDetailsAuthorIdGet(authorId: String): ResponseEntity<AuthorDetailsResponse> {
-        TODO("Not yet implemented")
+@RestController
+class AuthorController(
+    val service: AuthorService
+) : AuthorApi {
+    override fun v1AuthorDetailsAuthorIdGet(authorId: UUID): ResponseEntity<AuthorDetailsResponse> {
+        val author = service.getAuthorDetails(authorId = authorId)
+        return ResponseEntity.ok().body(author)
     }
 }

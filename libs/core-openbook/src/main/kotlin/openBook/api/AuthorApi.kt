@@ -5,7 +5,6 @@
 */
 package openBook.api
 
-import openBook.model.AuthorCreateRequest
 import openBook.model.AuthorDetailsResponse
 import openBook.model.NotFoundResponse
 import org.springframework.http.HttpStatus
@@ -25,18 +24,9 @@ interface AuthorApi {
 
 
     @RequestMapping(
-            method = [RequestMethod.POST],
-            value = ["/v1/author/create"],
-            produces = ["application/json"],
-            consumes = ["application/json"]
-    )
-    fun v1AuthorCreatePost( @RequestBody authorCreateRequest: AuthorCreateRequest): ResponseEntity<AuthorDetailsResponse>
-
-
-    @RequestMapping(
             method = [RequestMethod.GET],
             value = ["/v1/author/details/{author_id}"],
             produces = ["application/json"]
     )
-    fun v1AuthorDetailsAuthorIdGet( @PathVariable("author_id") authorId: kotlin.String): ResponseEntity<AuthorDetailsResponse>
+    fun v1AuthorDetailsAuthorIdGet( @PathVariable("author_id") authorId: java.util.UUID): ResponseEntity<AuthorDetailsResponse>
 }

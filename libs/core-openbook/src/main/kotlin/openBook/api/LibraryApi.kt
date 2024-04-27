@@ -5,7 +5,6 @@
 */
 package openBook.api
 
-import openBook.model.LibraryCreateRequest
 import openBook.model.LibraryDetailsResponse
 import openBook.model.NotFoundResponse
 import org.springframework.http.HttpStatus
@@ -25,18 +24,9 @@ interface LibraryApi {
 
 
     @RequestMapping(
-            method = [RequestMethod.POST],
-            value = ["/v1/library/create"],
-            produces = ["application/json"],
-            consumes = ["application/json"]
-    )
-    fun v1LibraryCreatePost( @RequestBody libraryCreateRequest: LibraryCreateRequest): ResponseEntity<LibraryDetailsResponse>
-
-
-    @RequestMapping(
             method = [RequestMethod.GET],
             value = ["/v1/library/details/{library_id}"],
             produces = ["application/json"]
     )
-    fun v1LibraryDetailsLibraryIdGet( @PathVariable("library_id") libraryId: kotlin.String): ResponseEntity<LibraryDetailsResponse>
+    fun v1LibraryDetailsLibraryIdGet( @PathVariable("library_id") libraryId: java.util.UUID): ResponseEntity<LibraryDetailsResponse>
 }

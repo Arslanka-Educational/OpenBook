@@ -5,9 +5,11 @@
 */
 package openBook.api
 
-import openBook.model.BookCreateRequest
-import openBook.model.BookDetailsResponse
+import openBook.model.BookGetByInfoIdResponse
+import openBook.model.BookInfo
+import openBook.model.BookReserveResponse
 import openBook.model.NotFoundResponse
+import openBook.model.V1BookReservationPostRequest
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
@@ -25,18 +27,26 @@ interface BookApi {
 
 
     @RequestMapping(
-            method = [RequestMethod.POST],
-            value = ["/v1/book/create"],
-            produces = ["application/json"],
-            consumes = ["application/json"]
+            method = [RequestMethod.GET],
+            value = ["/v1/book/find-by-name/{book_name}"],
+            produces = ["application/json"]
     )
-    fun v1BookCreatePost( @RequestBody bookCreateRequest: BookCreateRequest): ResponseEntity<BookDetailsResponse>
+    fun v1BookFindByNameBookNameGet( @PathVariable("book_name") bookName: kotlin.String): ResponseEntity<List<BookInfo>>
 
 
     @RequestMapping(
             method = [RequestMethod.GET],
-            value = ["/v1/book/details/{book_id}"],
+            value = ["/v1/book/get-by-info/{book_info_id}"],
             produces = ["application/json"]
     )
-    fun v1BookDetailsBookIdGet( @PathVariable("book_id") bookId: kotlin.String): ResponseEntity<BookDetailsResponse>
+    fun v1BookGetByInfoBookInfoIdGet( @PathVariable("book_info_id") bookInfoId: java.util.UUID): ResponseEntity<BookGetByInfoIdResponse>
+
+
+    @RequestMapping(
+            method = [RequestMethod.POST],
+            value = ["/v1/book/reservation"],
+            produces = ["application/json"],
+            consumes = ["application/json"]
+    )
+    fun v1BookReservationPost( @RequestBody v1BookReservationPostRequest: V1BookReservationPostRequest): ResponseEntity<List<BookReserveResponse>>
 }

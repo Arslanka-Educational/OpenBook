@@ -9,21 +9,21 @@ openApiGenerate {
     inputSpec.set("$currentDirectory/spec/api.yaml")
     configOptions.putAll(
         mapOf(
-            Pair("useSpringBoot3", "true"),
-            Pair("exceptionHandler", "false"),
-            Pair("useSwaggerUI", "false"),
-            Pair("documentationProvider", "none"),
-            Pair("basePackage", "openBook"),
-            Pair("apiPackage", "openBook.api"),
-            Pair("modelPackage", "openBook.model"),
-            Pair("apiSuffix", "Api"),
-            Pair("skipGeneratePom", "true"),
-            Pair("artifactId", "core-openBook"),
-            Pair("useBeanValidation", "false"),
-            Pair("interfaceOnly", "true"),
-            Pair("skipDefaultInterface", "true"),
-            Pair("useTags", "true"),
-            Pair("skipDefaultInterface", "true"),
+            "useSpringBoot3" to "true",
+            "exceptionHandler" to "false",
+            "useSwaggerUI" to "false",
+            "documentationProvider" to "none",
+            "basePackage" to "openBook",
+            "apiPackage" to "openBook.api",
+            "modelPackage" to "openBook.model",
+            "apiSuffix" to "Api",
+            "skipGeneratePom" to "true",
+            "artifactId" to "core-openBook",
+            "useBeanValidation" to "false",
+            "interfaceOnly" to "true",
+            "skipDefaultInterface" to "true",
+            "useTags" to "true",
+            "skipDefaultInterface" to "true"
         )
     )
     generateApiDocumentation.set(false)
@@ -34,13 +34,13 @@ openApiGenerate {
 
 tasks.openApiGenerate {
     doFirst {
-        delete (
+        delete(
             "$outputDirectory/src/main/kotlin/openBook/api",
             "$outputDirectory/spec/merged.yaml"
         )
     }
     doLast {
-        delete (
+        delete(
             "$outputDirectory/.openapi-generator",
             "$outputDirectory/pom.xml",
             "$outputDirectory/README.md",
