@@ -1,16 +1,30 @@
 package openbook.controller
 
 import openBook.api.BookApi
-import openBook.model.BookCreateRequest
-import openBook.model.BookDetailsResponse
+import openBook.model.*
+import openbook.service.BookService
 import org.springframework.http.ResponseEntity
+import org.springframework.web.bind.annotation.RestController
+import java.util.UUID
 
-class BookController : BookApi {
-    override fun v1BookCreatePost(bookCreateRequest: BookCreateRequest): ResponseEntity<BookDetailsResponse> {
-        TODO("Not yet implemented")
+@RestController
+class BookController(
+    val service: BookService
+) : BookApi {
+
+    override fun v1BookFindByNameBookNameGet(bookName: String): ResponseEntity<List<BookInfo>> {
+        return ResponseEntity.ok().body(
+            service.getBookInfoListByName(bookName = bookName)
+        )
     }
 
-    override fun v1BookDetailsBookIdGet(bookId: String): ResponseEntity<BookDetailsResponse> {
+    override fun v1BookGetByInfoBookInfoIdGet(bookInfoId: UUID): ResponseEntity<BookGetByInfoIdResponse> {
+        return ResponseEntity.ok().body(
+            service.getBooksByInfoId(bookInfoId)
+        )
+    }
+
+    override fun v1BookReservationPost(v1BookReservationPostRequest: V1BookReservationPostRequest): ResponseEntity<List<BookReserveResponse>> {
         TODO("Not yet implemented")
     }
 }

@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: core-openbook
+  datasource:
+    url: jdbc:postgresql://localhost:5432/openbook
+    username: postgres
+    password: 31p6hd19

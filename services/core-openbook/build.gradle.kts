@@ -17,6 +17,10 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation(project(":libs:core-openbook"))
+    implementation("org.springframework.boot:spring-boot-starter-jdbc")
+    implementation("org.postgresql:postgresql:42.7.0")
+    compileOnly("org.projectlombok:lombok")
+    annotationProcessor("org.projectlombok:lombok")
 }
 
 tasks.test {
