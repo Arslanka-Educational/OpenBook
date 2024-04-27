@@ -24,7 +24,9 @@ class BookController(
         )
     }
 
-    override fun v1BookReservationPost(v1BookReservationPostRequest: V1BookReservationPostRequest): ResponseEntity<List<BookReserveResponse>> {
-        TODO("Not yet implemented")
+    override fun v1BookReservationPost(v1BookReservationPostRequest: V1BookReservationPostRequest): ResponseEntity<BookReserveResponse> {
+        return ResponseEntity.ok().body(
+            service.reserveBook(v1BookReservationPostRequest.bookId)
+        )
     }
 }

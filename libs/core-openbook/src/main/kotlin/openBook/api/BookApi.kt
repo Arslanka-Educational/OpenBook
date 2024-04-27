@@ -48,5 +48,5 @@ interface BookApi {
             produces = ["application/json"],
             consumes = ["application/json"]
     )
-    fun v1BookReservationPost( @RequestBody v1BookReservationPostRequest: V1BookReservationPostRequest): ResponseEntity<List<BookReserveResponse>>
+    fun v1BookReservationPost( @RequestBody v1BookReservationPostRequest: V1BookReservationPostRequest): ResponseEntity<BookReserveResponse>
 }

@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty
  */
 data class V1BookReservationPostRequest(
 
-    @get:JsonProperty("book_id") val bookId: java.util.UUID? = null
+    @get:JsonProperty("book_id", required = true) val bookId: java.util.UUID
 ) {
 
 }

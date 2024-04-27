@@ -8,7 +8,7 @@ import java.util.*
 
 @Service
 class AuthorService(
-    val repository: AuthorRepository
+    private val repository: AuthorRepository
 ) {
     fun getAuthorDetails(authorId: UUID): AuthorDetailsResponse {
         return repository.getAuthorDetails(authorId)

@@ -56,6 +56,8 @@ paths:
           application/json:
             schema:
               type: object
+              required:
+                - book_id
               properties:
                 book_id:
                   type: string
@@ -66,9 +68,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: './definitions.yaml#/components/schemas/BookReserveResponse'
+                $ref: './definitions.yaml#/components/schemas/BookReserveResponse'
 
   /v1/author/details/{author_id}:
     get:
