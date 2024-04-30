@@ -3,6 +3,7 @@ drop table if exists libraries cascade;
 drop table if exists publishers cascade;
 drop table if exists book_info cascade;
 drop table if exists books cascade;
+drop table if exists reservation;
 drop type if exists booking_status cascade;
 
 create type booking_status as enum ('AVAILABLE', 'UNAVAILABLE');
@@ -44,6 +45,15 @@ create table books
     CONSTRAINT book_info_id_fk FOREIGN KEY (book_info_id) REFERENCES book_info (id),
     CONSTRAINT library_id_fk FOREIGN KEY (library_id) REFERENCES libraries (id),
     CONSTRAINT publisher_id_fk FOREIGN KEY (publisher_id) REFERENCES publishers (id)
+);
+
+create table reservation
+(
+    id                          uuid primary key,
+    book_id                     uuid      not null,
+    reserved_date               timestamp not null,
+    reservation_expiration_date timestamp not null,
+    CONSTRAINT book_id_fk FOREIGN KEY (book_id) REFERENCES books (id)
 );
 
 create index on authors (name);

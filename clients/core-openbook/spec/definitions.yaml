@@ -81,6 +81,8 @@ components:
     BookReserveResponse:
       type: object
       required:
+        - reserved_date
+        - reservation_expiration_date
       properties:
         reserved_date:
           type: string
