@@ -44,7 +44,7 @@ tasks.openApiGenerate {
             "$outputDirectory/.openapi-generator",
             "$outputDirectory/pom.xml",
             "$outputDirectory/README.md",
-            "$outputDirectory/src/main/kotlin/openBook/api/ApiUtil.kt"
+            "$outputDirectory/src/main/kotlin/openBook/api/ApiUtil.kt",
         )
     }
 }
