@@ -1,0 +1,34 @@
+openapi: 3.0.3
+info:
+  title: server models
+  description: server models
+  version: 1.0.0
+paths: {}
+
+components:
+  schemas:
+    ClientLoginRequest:
+      type: object
+      required:
+        - username
+        - password
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+
+    ClientRegisterRequest:
+      type: object
+      required:
+        - username
+        - password
+        - email
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+        email:
+          type: string
+          format: email
