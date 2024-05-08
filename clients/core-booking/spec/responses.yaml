@@ -1,0 +1,21 @@
+openapi: 3.0.3
+info:
+  title: server responses
+  description: server responses
+  version: 1.0.0
+paths: { }
+
+components:
+  schemas:
+    BookReserveResponse:
+      type: object
+      required:
+        - reserved_date
+        - reservation_expiration_date
+      properties:
+        reserved_date:
+          type: string
+          format: date
+        reservation_expiration_date:
+          type: string
+          format: date

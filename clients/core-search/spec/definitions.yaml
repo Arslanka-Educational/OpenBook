@@ -1,0 +1,70 @@
+openapi: 3.0.3
+info:
+  title: server definitions
+  description: server definitions
+  version: 1.0.0
+paths: { }
+
+components:
+  schemas:
+    BookInfo:
+      type: object
+      required:
+        - id
+        - name
+        - authorId
+        - publisher_id
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+          description: name of a book
+        authorId:
+          type: string
+          format: uuid
+          description: foreign key to a book's author
+        publisher_id:
+          type: string
+          format: uuid
+
+    Book:
+      type: object
+      required:
+        - id
+        - libraryId
+        - bookInfoId
+        - status
+      properties:
+        id:
+          type: string
+          format: uuid
+        bookInfoId:
+          type: string
+          format: uuid
+        libraryId:
+          type: string
+          format: uuid
+          description: library this is in
+        status:
+          $ref: '#/components/schemas/BookStatus'
+
+    Author:
+      type: object
+      required:
+        - id
+        - name
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+          description: author's name
+
+    BookStatus:
+      type: string
+      enum:
+        - AVAILABLE
+        - UNAVAILABLE

@@ -1,0 +1,92 @@
+openapi: 3.0.3
+info:
+  title: api
+  description: api
+  version: 1.0.0
+paths:
+  /v1/book/get-by-info/{book_info_id}:
+    get:
+      tags:
+        - Book
+      parameters:
+        - in: path
+          name: book_info_id
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: './responses.yaml#/components/schemas/BookGetByInfoIdResponse'
+
+  /v1/book/find-by-name/{book_name}:
+    get:
+      tags:
+        - Book
+      parameters:
+        - in: path
+          name: book_name
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: './responses.yaml#/components/schemas/BookGetByNameResponse'
+
+  /v1/author/details/{author_id}:
+    get:
+      tags:
+        - Author
+      parameters:
+        - in: path
+          name: author_id
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: './definitions.yaml#/components/schemas/Author'
+        404:
+          description: Library not found
+          content:
+            application/json:
+              schema:
+                $ref: './responses.yaml#/components/schemas/ErrorResponse'
+
+  /v1/library/details/{library_id}:
+    get:
+      tags:
+        - Library
+      parameters:
+        - in: path
+          name: library_id
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: './responses.yaml#/components/schemas/LibraryDetailsResponse'
+        404:
+          description: Library not found
+          content:
+            application/json:
+              schema:
+                $ref: './responses.yaml#/components/schemas/ErrorResponse'

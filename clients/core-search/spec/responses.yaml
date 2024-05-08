@@ -1,0 +1,55 @@
+openapi: 3.0.3
+info:
+  title: server responses
+  description: server responses
+  version: 1.0.0
+paths: { }
+
+components:
+  schemas:
+    BookGetByNameResponse:
+      type: object
+      properties:
+        books_info:
+          type: array
+          items:
+            $ref: './definitions.yaml#/components/schemas/BookInfo'
+
+    BookGetByInfoIdResponse:
+      type: object
+      required:
+        - bookInfoId
+        - books
+      properties:
+        bookInfoId:
+          type: string
+          format: uuid
+        books:
+          type: array
+          items:
+            $ref: './definitions.yaml#/components/schemas/Book'
+
+    LibraryDetailsResponse:
+      type: object
+      required:
+        - id
+        - name
+        - city
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+          description: library's name
+        city:
+          type: string
+          description: city library located
+
+    ErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+        status:
+          type: integer

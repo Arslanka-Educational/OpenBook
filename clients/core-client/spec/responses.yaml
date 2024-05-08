@@ -1,0 +1,20 @@
+openapi: 3.0.3
+info:
+  title: server responses
+  description: server responses
+  version: 1.0.0
+paths: { }
+
+components:
+  schemas:
+    JwtLoginResponse:
+      type: object
+      required:
+        - access_token
+        - refresh_token
+      properties:
+        access_token:
+          type: string
+        refresh_token:
+          type: string
+  

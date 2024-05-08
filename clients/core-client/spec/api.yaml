@@ -1,0 +1,42 @@
+openapi: 3.0.3
+info:
+  title: api
+  description: api
+  version: 1.0.0
+paths:
+  /v1/client/login:
+    post:
+      tags:
+        - Client
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: './definitions.yaml#/components/schemas/ClientLoginRequest'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: './responses.yaml#/components/schemas/JwtLoginResponse'
+
+  /v1/client/register:
+    post:
+      tags:
+        - Client
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: './definitions.yaml#/components/schemas/ClientRegisterRequest'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: './responses.yaml#/components/schemas/JwtLoginResponse'
+
