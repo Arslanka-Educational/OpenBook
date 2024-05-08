@@ -6,7 +6,7 @@
 package openBook.api
 
 import openBook.model.ErrorResponse
-import openBook.model.LibraryDetailsResponse
+import openBook.model.Library
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
@@ -29,5 +29,5 @@ interface LibraryApi {
             value = ["/v1/library/details/{library_id}"],
             produces = ["application/json"]
     )
-    suspend fun v1LibraryDetailsLibraryIdGet( @PathVariable("library_id") libraryId: java.util.UUID): ResponseEntity<LibraryDetailsResponse>
+    suspend fun v1LibraryDetailsLibraryIdGet( @PathVariable("library_id") libraryId: java.util.UUID): ResponseEntity<Library>
 }

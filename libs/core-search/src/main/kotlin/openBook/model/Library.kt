@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty
  * @param name library's name
  * @param city city library located
  */
-data class LibraryDetailsResponse(
+data class Library(
 
     @get:JsonProperty("id", required = true) val id: java.util.UUID,
 

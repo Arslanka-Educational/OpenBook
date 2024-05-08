@@ -83,7 +83,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './responses.yaml#/components/schemas/LibraryDetailsResponse'
+                $ref: './definitions.yaml#/components/schemas/Library'
         404:
           description: Library not found
           content:
