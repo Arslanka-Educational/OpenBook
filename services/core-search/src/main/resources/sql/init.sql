@@ -36,7 +36,7 @@ create table if not exists book
     id           uuid primary key,
     book_info_id uuid           not null,
     library_id   uuid           not null,
-    status       booking_status not null default 'UNAVAILABLE',
+    status       booking_status not null,
     CONSTRAINT book_info_id_fk FOREIGN KEY (book_info_id) REFERENCES book_info (id),
     CONSTRAINT library_id_fk FOREIGN KEY (library_id) REFERENCES library (id)
 );

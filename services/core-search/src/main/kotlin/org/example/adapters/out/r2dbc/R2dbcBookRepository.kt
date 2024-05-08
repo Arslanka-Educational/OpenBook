@@ -48,7 +48,7 @@ class R2dbcBookRepository(
                 .block()
         } ?: mutableListOf()
 
-    companion object {
+    private companion object {
         private val GET_BY_INFO_ID = """
             SELECT id, book_info_id, library_id, status FROM book where book_info_id = :info_id 
         """.trimIndent()

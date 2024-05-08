@@ -17,13 +17,13 @@ class BookSearchController(
         return ResponseEntity.ok().body(
             BookGetByInfoIdResponse(
                 bookInfoId = bookInfoId,
-                books = booksList
+                books = booksList,
             )
         )
     }
 
     override suspend fun v1BookFindByNameBookNameGet(bookName: String): ResponseEntity<BookGetByNameResponse> {
-        val bookInfoList = bookService.findBookInfoByName(bookName)
+        val bookInfoList = bookService.getBookInfoByName(bookName)
         return ResponseEntity.ok().body(
             BookGetByNameResponse(
                 booksInfo = bookInfoList

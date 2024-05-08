@@ -11,7 +11,7 @@ import java.util.*
 class BookSearchService(
     private val bookRepository: BookRepository
 ) : BookSearchUseCase {
-    override suspend fun findBookInfoByName(bookName: String): List<BookInfo> {
+    override suspend fun getBookInfoByName(bookName: String): List<BookInfo> {
         return bookRepository.findBooksInfoByName(bookName)
     }
 

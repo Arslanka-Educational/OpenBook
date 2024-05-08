@@ -28,20 +28,6 @@ components:
           type: array
           items:
             $ref: './definitions.yaml#/components/schemas/Book'
-          default: [ ]
-
-    AuthorDetailsResponse:
-      type: object
-      required:
-        - id
-        - name
-      properties:
-        id:
-          type: string
-          format: uuid
-        name:
-          type: string
-          description: author's name
 
     LibraryDetailsResponse:
       type: object

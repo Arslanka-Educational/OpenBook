@@ -22,7 +22,7 @@ class R2dbcLibraryRepository(
             )
         }.awaitOneOrNull()
 
-    companion object {
+    private companion object {
         private val GET_BY_ID = """
             SELECT id, name, city FROM library WHERE id = :id
             """.trimIndent()

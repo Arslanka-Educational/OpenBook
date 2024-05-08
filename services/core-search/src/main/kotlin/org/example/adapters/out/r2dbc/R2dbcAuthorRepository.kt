@@ -1,6 +1,6 @@
 package org.example.adapters.out.r2dbc
 
-import org.example.domain.model.Author
+import openBook.model.Author
 import org.example.ports.out.AuthorRepository
 import org.springframework.r2dbc.core.DatabaseClient
 import org.springframework.r2dbc.core.awaitOneOrNull
@@ -21,7 +21,7 @@ class R2dbcAuthorRepository(
             )
         }.awaitOneOrNull()
 
-    companion object {
+    private companion object {
         private val GET_BY_ID = """
             SELECT id, name FROM author WHERE id = :id
         """.trimIndent()

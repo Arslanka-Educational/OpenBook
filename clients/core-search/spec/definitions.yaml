@@ -50,9 +50,21 @@ components:
         status:
           $ref: '#/components/schemas/BookStatus'
 
+    Author:
+      type: object
+      required:
+        - id
+        - name
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+          description: author's name
+
     BookStatus:
       type: string
       enum:
         - AVAILABLE
         - UNAVAILABLE
-      default: 'UNAVAILABLE'

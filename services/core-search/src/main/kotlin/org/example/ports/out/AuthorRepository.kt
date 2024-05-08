@@ -1,6 +1,6 @@
 package org.example.ports.out
 
-import org.example.domain.model.Author
+import openBook.model.Author
 import java.util.UUID
 
 interface AuthorRepository {

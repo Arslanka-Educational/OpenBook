@@ -20,7 +20,7 @@ data class Book(
 
     @get:JsonProperty("libraryId", required = true) val libraryId: java.util.UUID,
 
-    @get:JsonProperty("status", required = true) val status: BookStatus = BookStatus.uNAVAILABLE
+    @get:JsonProperty("status", required = true) val status: BookStatus
 ) {
 
 }
