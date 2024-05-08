@@ -1,8 +1,8 @@
 plugins {
     id("org.openapi.generator") version "7.3.0"
 }
-val currentDirectory = "$rootDir/clients/core-client"
-val outputDirectory: String = project(":libs:core-client").projectDir.path
+val currentDirectory = "$rootDir/clients/api-gateway"
+val outputDirectory: String = project(":libs:api-gateway").projectDir.path
 
 openApiGenerate {
     generatorName.set("kotlin-spring")
@@ -25,7 +25,6 @@ openApiGenerate {
             "useTags" to "true",
             "skipDefaultInterface" to "true",
             "reactive" to "true"
-
         )
     )
     generateApiDocumentation.set(false)

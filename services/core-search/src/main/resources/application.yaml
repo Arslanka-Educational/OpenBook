@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: core-search
+  r2dbc:
+    username: postgres
+    password: root
+    url: r2dbc:postgresql://localhost:5432/books_catalog
+
+server:
+  port: 8080

@@ -49,5 +49,12 @@ tasks.openApiGenerate {
             "$outputDirectory/README.md",
             "$outputDirectory/src/main/kotlin/openBook/api/ApiUtil.kt",
         )
+
+        val buildScriptFile = File(outputDirectory, "build.gradle.kts")
+        if (buildScriptFile.exists()) {
+            val content = buildScriptFile.readText()
+            val modifiedContent = content.replace("testImplementation`", "testImplementation")
+            buildScriptFile.writeText(modifiedContent)
+        }
     }
 }

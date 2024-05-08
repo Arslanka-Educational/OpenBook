@@ -31,3 +31,16 @@ include("libs:core-search")
 findProject(":libs:core-search")?.name = "core-search"
 include("libs:core-booking")
 findProject(":libs:core-booking")?.name = "core-booking"
+include("services")
+include("services:core-catalog")
+findProject(":services:core-catalog")?.name = "core-catalog"
+include("services:core-search")
+findProject(":services:core-search")?.name = "core-search"
+include("services:core-client")
+findProject(":services:core-client")?.name = "core-client"
+include("services:core-booking")
+findProject(":services:core-booking")?.name = "core-booking"
+include("clients:api-gateway")
+findProject(":clients:api-gateway")?.name = "api-gateway"
+include("libs:api-gateway")
+findProject(":libs:api-gateway")?.name = "api-gateway"

@@ -1,9 +1,47 @@
 openapi: 3.0.3
 info:
-  title: api
-  description: api
+  title: api gateway
+  description: api gateway
   version: 1.0.0
 paths:
+  #  core-client
+  /v1/client/login:
+    post:
+      tags:
+        - Client
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '../../core-client/spec/definitions.yaml#/components/schemas/ClientLoginRequest'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '../../core-client/spec/responses.yaml#/components/schemas/JwtLoginResponse'
+
+  /v1/client/register:
+    post:
+      tags:
+        - Client
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '../../core-client/spec/definitions.yaml#/components/schemas/ClientRegisterRequest'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '../../core-client/spec/responses.yaml#/components/schemas/JwtLoginResponse'
+
+  # core-catalog
   /v1/book/find-by-name/{book_name}:
     get:
       tags:
@@ -78,3 +116,25 @@ paths:
             application/json:
               schema:
                 $ref: '../../core-search/spec/responses.yaml#/components/schemas/LibraryDetailsResponse'
+
+  #  core-booking
+  /v1/booking/reserve:
+    post:
+      tags:
+        - Booking
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: string
+              format: uuid
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '../../core-booking/spec/responses.yaml#/components/schemas/BookReserveResponse'
+
+  # core-search

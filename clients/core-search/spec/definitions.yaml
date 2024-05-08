@@ -13,6 +13,7 @@ components:
         - id
         - name
         - authorId
+        - publisher_id
       properties:
         id:
           type: string
@@ -24,12 +25,14 @@ components:
           type: string
           format: uuid
           description: foreign key to a book's author
+        publisher_id:
+          type: string
+          format: uuid
 
     Book:
       type: object
       required:
         - id
-        - publisherId
         - libraryId
         - bookInfoId
         - status
@@ -40,10 +43,6 @@ components:
         bookInfoId:
           type: string
           format: uuid
-        publisherId:
-          type: string
-          format: uuid
-          description: key to a book publication id
         libraryId:
           type: string
           format: uuid

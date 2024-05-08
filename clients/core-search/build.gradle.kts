@@ -3,7 +3,14 @@ plugins {
 }
 val currentDirectory = "$rootDir/clients/core-search"
 val outputDirectory: String = project(":libs:core-search").projectDir.path
-
+configurations {
+    // Define a configuration for OpenAPI generation excluding test dependencies
+    val openApiGeneration by configurations.creating {
+        exclude(group = "org.junit.jupiter", module = "junit-jupiter-api") // Example exclusion
+        exclude(group = "org.jetbrains.kotlinx", module = "kotlinx-coroutines-test") // Example exclusion
+        // Add more exclusions as needed for your project
+    }
+}
 openApiGenerate {
     generatorName.set("kotlin-spring")
     inputSpec.set("$currentDirectory/spec/api.yaml")
@@ -30,6 +37,7 @@ openApiGenerate {
     generateApiDocumentation.set(false)
     generateModelDocumentation.set(false)
     generateApiTests.set(false)
+    generateModelTests.set(false)
     outputDir.set(outputDirectory)
 }
 
@@ -37,6 +45,7 @@ tasks.openApiGenerate {
     doFirst {
         delete(
             "$outputDirectory/src/main/kotlin/openBook/api",
+            "$outputDirectory/src/main/kotlin/openBook/model",
             "$outputDirectory/spec/merged.yaml"
         )
     }
@@ -47,5 +56,11 @@ tasks.openApiGenerate {
             "$outputDirectory/README.md",
             "$outputDirectory/src/main/kotlin/openBook/api/ApiUtil.kt",
         )
+        val buildScriptFile = File(outputDirectory, "build.gradle.kts")
+        if (buildScriptFile.exists()) {
+            val content = buildScriptFile.readText()
+            val modifiedContent = content.replace("testImplementation`", "testImplementation")
+            buildScriptFile.writeText(modifiedContent)
+        }
     }
 }
