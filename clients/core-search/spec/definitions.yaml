@@ -63,6 +63,23 @@ components:
           type: string
           description: author's name
 
+    Library:
+      type: object
+      required:
+        - id
+        - name
+        - city
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+          description: library's name
+        city:
+          type: string
+          description: city library located
+
     BookStatus:
       type: string
       enum:

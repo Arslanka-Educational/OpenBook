@@ -8,4 +8,6 @@ interface BookSearchUseCase {
     suspend fun getBookInfoByName(bookName: String): List<BookInfo>
 
     suspend fun getBooksByInfoId(bookInfoId: UUID): List<Book>
+
+    suspend fun getBookInfoDetails(bookInfoId: UUID): BookInfo?
 }

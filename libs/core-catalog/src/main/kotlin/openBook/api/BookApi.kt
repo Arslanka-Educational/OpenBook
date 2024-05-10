@@ -7,6 +7,8 @@ package openBook.api
 
 import openBook.model.BookGetByInfoIdResponse
 import openBook.model.BookGetByNameResponse
+import openBook.model.BookInfo
+import openBook.model.ErrorResponse
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
@@ -26,16 +28,24 @@ interface BookApi {
 
     @RequestMapping(
             method = [RequestMethod.GET],
-            value = ["/v1/book/details/{book_info_id}"],
+            value = ["/v1/book/get-by-info/{book_info_id}"],
             produces = ["application/json"]
     )
-    suspend fun v1BookDetailsBookInfoIdGet( @PathVariable("book_info_id") bookInfoId: java.util.UUID): ResponseEntity<BookGetByInfoIdResponse>
+    suspend fun v1BookGetByInfoBookInfoIdGet( @PathVariable("book_info_id") bookInfoId: java.util.UUID): ResponseEntity<BookGetByInfoIdResponse>
 
 
     @RequestMapping(
             method = [RequestMethod.GET],
-            value = ["/v1/book/find-by-name/{book_name}"],
+            value = ["/v1/book/get-by-name/{book_name}"],
             produces = ["application/json"]
     )
-    suspend fun v1BookFindByNameBookNameGet( @PathVariable("book_name") bookName: kotlin.String): ResponseEntity<BookGetByNameResponse>
+    suspend fun v1BookGetByNameBookNameGet( @PathVariable("book_name") bookName: kotlin.String): ResponseEntity<BookGetByNameResponse>
+
+
+    @RequestMapping(
+            method = [RequestMethod.GET],
+            value = ["/v1/book/info-details/{book_info_id}"],
+            produces = ["application/json"]
+    )
+    suspend fun v1BookInfoDetailsBookInfoIdGet( @PathVariable("book_info_id") bookInfoId: java.util.UUID): ResponseEntity<BookInfo>
 }

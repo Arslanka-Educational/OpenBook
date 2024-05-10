@@ -1,6 +1,6 @@
 package org.example.adapters.out.r2dbc
 
-import org.example.domain.model.Library
+import openBook.model.Library
 import org.example.ports.out.LibraryRepository
 import org.springframework.r2dbc.core.DatabaseClient
 import org.springframework.r2dbc.core.awaitOneOrNull

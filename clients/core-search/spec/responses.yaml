@@ -8,6 +8,8 @@ paths: { }
 components:
   schemas:
     BookGetByNameResponse:
+      required:
+        - books_info
       type: object
       properties:
         books_info:
@@ -28,23 +30,6 @@ components:
           type: array
           items:
             $ref: './definitions.yaml#/components/schemas/Book'
-
-    LibraryDetailsResponse:
-      type: object
-      required:
-        - id
-        - name
-        - city
-      properties:
-        id:
-          type: string
-          format: uuid
-        name:
-          type: string
-          description: library's name
-        city:
-          type: string
-          description: city library located
 
     ErrorResponse:
       type: object

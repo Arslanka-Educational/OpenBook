@@ -36,7 +36,7 @@ openApiGenerate {
 tasks.openApiGenerate {
     doFirst {
         delete(
-            "$outputDirectory/src/main/kotlin/openBook/api",
+            "$outputDirectory/src/main/kotlin/openBook",
             "$outputDirectory/spec/merged.yaml"
         )
     }

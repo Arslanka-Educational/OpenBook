@@ -4,7 +4,7 @@ info:
   description: api
   version: 1.0.0
 paths:
-  /v1/book/find-by-name/{book_name}:
+  /v1/book/get-by-name/{book_name}:
     get:
       tags:
         - Book
@@ -22,7 +22,32 @@ paths:
               schema:
                 $ref: '../../core-search/spec/responses.yaml#/components/schemas/BookGetByNameResponse'
 
-  /v1/book/details/{book_info_id}:
+  /v1/book/info-details/{book_info_id}:
+    get:
+      tags:
+        - Book
+      parameters:
+        - in: path
+          name: book_info_id
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '../../core-search/spec/definitions.yaml#/components/schemas/BookInfo'
+        404:
+          description: Library not found
+          content:
+            application/json:
+              schema:
+                $ref: '../../core-search/spec/responses.yaml#/components/schemas/ErrorResponse'
+
+  /v1/book/get-by-info/{book_info_id}:
     get:
       tags:
         - Book
@@ -58,7 +83,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '../../core-search/spec/responses.yaml#/components/schemas/AuthorDetailsResponse'
+                $ref: '../../core-search/spec/definitions.yaml#/components/schemas/Author'
+        404:
+          description: Library not found
+          content:
+            application/json:
+              schema:
+                $ref: '../../core-search/spec/responses.yaml#/components/schemas/ErrorResponse'
 
   /v1/library/details/{library_id}:
     get:
@@ -77,4 +108,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '../../core-search/spec/responses.yaml#/components/schemas/LibraryDetailsResponse'
+                $ref: '../../core-search/spec/definitions.yaml#/components/schemas/Library'
+        404:
+          description: Library not found
+          content:
+            application/json:
+              schema:
+                $ref: '../../core-search/spec/responses.yaml#/components/schemas/ErrorResponse'

@@ -6,7 +6,6 @@
 package openBook.api
 
 import openBook.model.Author
-import openBook.model.ErrorResponse
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity

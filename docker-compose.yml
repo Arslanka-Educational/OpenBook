@@ -1,0 +1,52 @@
+version: "3.0"
+
+services:
+  core-catalog:
+    container_name: core-catalog
+    image: openjdk:17-ea-16-jdk
+    volumes:
+      - ./services/core-catalog/build/libs/core-catalog.jar:/core-catalog.jar
+    command: [ "java", "-jar", "core-catalog.jar" ]
+    ports:
+      - "8080:8080"
+    depends_on:
+      - core-search
+    networks:
+      - core-network
+    environment:
+      CORE_SEARCH_URL: http://core-search:8081
+
+  core-search:
+    container_name: core-search
+    image: openjdk:17-ea-16-jdk
+    volumes:
+      - ./services/core-search/build/libs/core-search.jar:/core-search.jar
+    command: [ "java", "-jar", "core-search.jar" ]
+    ports:
+      - "8081:8081"
+    depends_on:
+      - core-search-postgresql
+    environment:
+      SPRING_DATASOURCE_URL: r2dbc:postgresql://core-search-postgresql:5432/books_catalog
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: root
+    networks:
+      - core-network
+
+  core-search-postgresql:
+    image: postgres:16
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./services/core-search/src/main/resources/sql:/docker-entrypoint-initdb.d
+    environment:
+      POSTGRES_DB: books_catalog
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: root
+    hostname: "postgres"
+    networks:
+      - core-network
+
+networks:
+  core-network:
+    driver: bridge

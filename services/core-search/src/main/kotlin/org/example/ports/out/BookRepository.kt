@@ -2,9 +2,11 @@ package org.example.ports.out
 
 import openBook.model.Book
 import openBook.model.BookInfo
-import java.util.UUID
+import java.util.*
 
 interface BookRepository {
-    suspend fun findBooksByInfoId(bookInfoId: UUID) : List<Book>
-    suspend fun findBooksInfoByName(bookName: String): List<BookInfo>
+    suspend fun getBooksByInfoId(bookInfoId: UUID): List<Book>
+    suspend fun getBooksInfoByName(bookName: String): List<BookInfo>
+
+    suspend fun getBookInfoDetailsById(bookInfoId: UUID): BookInfo?
 }

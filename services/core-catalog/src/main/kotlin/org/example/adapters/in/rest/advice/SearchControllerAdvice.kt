@@ -2,6 +2,7 @@ package org.example.adapters.`in`.rest.advice
 
 import openBook.model.ErrorResponse
 import org.example.domain.model.exceptions.AuthorNotFoundException
+import org.example.domain.model.exceptions.BookInfoNotFoundException
 import org.example.domain.model.exceptions.LibraryNotFoundException
 import org.slf4j.LoggerFactory
 import org.springframework.http.HttpStatus
@@ -39,6 +40,18 @@ class SearchControllerAdvice {
     }
 
     @ExceptionHandler
+    fun handleAuthorNotFoundException(exception: BookInfoNotFoundException): ResponseEntity<ErrorResponse> {
+        logger.warn(exception.message)
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+            .body(
+                ErrorResponse(
+                    message = exception.message,
+                    status = HttpStatus.NOT_FOUND.value()
+                )
+            )
+    }
+
+    @ExceptionHandler
     fun handleLibraryNotFoundException(exception: LibraryNotFoundException): ResponseEntity<ErrorResponse> {
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
             .body(
@@ -49,4 +62,3 @@ class SearchControllerAdvice {
             )
     }
 }
-
