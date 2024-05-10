@@ -1,0 +1,101 @@
+openapi: 3.0.3
+info:
+  title: core-book-writer api
+  description: core-book-writer api
+  version: 1.0.0
+paths:
+  /v1/book/insert:
+    post:
+      tags:
+        - BookCatalog
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: './definitions.yaml#/components/schemas/InsertBookIntoLibraryRequest'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: boolean
+
+  /v1/book/create-book-info:
+    post:
+      tags:
+        - BookCatalog
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: './definitions.yaml#/components/schemas/BookInfoCreateDetails'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '../../core-search/spec/definitions.yaml#/components/schemas/BookInfo'
+
+  /v1/book/change-details:
+    put:
+      tags:
+        - BookCatalog
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '../../core-search/spec/definitions.yaml#/components/schemas/Book'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '../../core-search/spec/definitions.yaml#/components/schemas/Book'
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '../../core-search/spec/responses.yaml#/components/schemas/ErrorResponse'
+
+  /v1/author/create:
+    post:
+      tags:
+        - AuthorCatalog
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: './definitions.yaml#/components/schemas/AuthorCreateDetails'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '../../core-search/spec/definitions.yaml#/components/schemas/Author'
+
+  /v1/library/create:
+    post:
+      tags:
+        - LibraryCatalog
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: './definitions.yaml#/components/schemas/LibraryCreateDetails'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '../../core-search/spec/definitions.yaml#/components/schemas/Library'

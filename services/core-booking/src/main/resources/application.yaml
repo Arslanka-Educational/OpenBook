@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: core-search
+  r2dbc:
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
+    url: ${SPRING_DATASOURCE_URL}
+
+server:
+  port: 8082
+
+external:
+  core-catalog-writer:
+    address: ${CORE_CATALOG_WRITER_URL}

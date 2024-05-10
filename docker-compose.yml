@@ -1,6 +1,42 @@
 version: "3.0"
 
 services:
+  core-catalog-writer:
+    container_name: core-catalog-writer
+    image: openjdk:17-ea-16-jdk
+    volumes:
+      - ./services/core-catalog-writer/build/libs/core-catalog-writer.jar:/core-catalog-writer.jar
+    command: [ "java", "-jar", "core-catalog-writer.jar" ]
+    ports:
+      - "8083:8083"
+    depends_on:
+      - core-catalog-postgresql
+    networks:
+      - core-network
+    environment:
+      SPRING_DATASOURCE_URL: r2dbc:postgresql://core-search-postgresql:5432/books_catalog
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: root
+
+  core-booking:
+    container_name: core-booking
+    image: openjdk:17-ea-16-jdk
+    volumes:
+      - ./services/core-booking/build/libs/core-booking.jar:/core-booking.jar
+    command: [ "java", "-jar", "core-booking.jar" ]
+    ports:
+      - "8082:8082"
+    depends_on:
+      - core-catalog-writer
+      - core-booking-postgresql
+    networks:
+      - core-network
+    environment:
+      CORE_CATALOG_WRITER_URL: http://core-catalog-writer:8083
+      SPRING_DATASOURCE_URL: r2dbc:postgresql://core-search-postgresql:5433/core_booking
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: root
+
   core-catalog:
     container_name: core-catalog
     image: openjdk:17-ea-16-jdk
@@ -25,15 +61,15 @@ services:
     ports:
       - "8081:8081"
     depends_on:
-      - core-search-postgresql
+      - core-catalog-postgresql
     environment:
-      SPRING_DATASOURCE_URL: r2dbc:postgresql://core-search-postgresql:5432/books_catalog
+      SPRING_DATASOURCE_URL: r2dbc:postgresql://core-catalog-postgresql:5432/books_catalog
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: root
     networks:
       - core-network
 
-  core-search-postgresql:
+  core-catalog-postgresql:
     image: postgres:16
     ports:
       - "5432:5432"
@@ -41,6 +77,20 @@ services:
       - ./services/core-search/src/main/resources/sql:/docker-entrypoint-initdb.d
     environment:
       POSTGRES_DB: books_catalog
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: root
+    hostname: "postgres"
+    networks:
+      - core-network
+
+  core-booking-postgresql:
+    image: postgres:16
+    ports:
+      - "5433:5433"
+    volumes:
+      - ./services/core-booking/src/main/resources/sql:/docker-entrypoint-initdb.d
+    environment:
+      POSTGRES_DB: core_booking
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: root
     hostname: "postgres"

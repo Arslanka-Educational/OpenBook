@@ -9,18 +9,14 @@ plugins {
     kotlin("plugin.spring") version "1.9.22"
 }
 
-project.archivesName= "core-catalog"
-
-tasks.withType<BootJar> {
-    archiveBaseName.set("core-catalog")
-}
-
-kotlin {
-    jvmToolchain(17)
-}
-
 group = "org.example"
 version = "unspecified"
+
+project.archivesName= "core-catalog-writer"
+
+tasks.withType<BootJar> {
+    archiveBaseName.set("core-catalog-writer")
+}
 
 repositories {
     mavenCentral()
@@ -30,11 +26,17 @@ dependencies {
     testImplementation(platform("org.junit:junit-bom:5.9.1"))
     testImplementation("org.junit.jupiter:junit-jupiter")
 
-    implementation(project(":libs:core-catalog"))
+    implementation(project(":libs:core-catalog-writer"))
     implementation("org.springframework.boot:spring-boot-starter-webflux")
+    implementation("org.springframework.boot:spring-boot-starter-data-r2dbc")
+    implementation("org.postgresql:r2dbc-postgresql")
     implementation("io.projectreactor.kotlin:reactor-kotlin-extensions")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
 }
 
 tasks.test {
     useJUnitPlatform()
+}
+kotlin {
+    jvmToolchain(17)
 }
