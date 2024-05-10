@@ -12,10 +12,14 @@ class BookSearchService(
     private val bookRepository: BookRepository
 ) : BookSearchUseCase {
     override suspend fun getBookInfoByName(bookName: String): List<BookInfo> {
-        return bookRepository.findBooksInfoByName(bookName)
+        return bookRepository.getBooksInfoByName(bookName)
     }
 
     override suspend fun getBooksByInfoId(bookInfoId: UUID): List<Book> {
-        return bookRepository.findBooksByInfoId(bookInfoId)
+        return bookRepository.getBooksByInfoId(bookInfoId)
+    }
+
+    override suspend fun getBookInfoDetails(bookInfoId: UUID): BookInfo? {
+        return bookRepository.getBookInfoDetailsById(bookInfoId)
     }
 }

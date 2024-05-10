@@ -2,9 +2,9 @@ spring:
   application:
     name: core-search
   r2dbc:
-    username: postgres
-    password: root
-    url: r2dbc:postgresql://localhost:5432/books_catalog
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
+    url: ${SPRING_DATASOURCE_URL}
 
 server:
-  port: 8080
+  port: 8081

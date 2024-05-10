@@ -4,14 +4,14 @@ import openBook.api.BookApi
 import openBook.model.BookGetByInfoIdResponse
 import openBook.model.BookGetByNameResponse
 import openBook.model.BookInfo
-import org.example.ports.`in`.BookSearchUseCase
+import org.example.domain.services.BookSearchService
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.RestController
 import java.util.*
 
 @RestController
 class BookSearchController(
-    private val bookService: BookSearchUseCase
+    private val bookService: BookSearchService
 ) : BookApi {
     override suspend fun v1BookGetByInfoBookInfoIdGet(bookInfoId: UUID): ResponseEntity<BookGetByInfoIdResponse> {
         val booksList = bookService.getBooksByInfoId(bookInfoId)

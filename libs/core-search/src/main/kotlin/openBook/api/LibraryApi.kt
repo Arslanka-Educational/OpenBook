@@ -5,7 +5,6 @@
 */
 package openBook.api
 
-import openBook.model.ErrorResponse
 import openBook.model.Library
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType

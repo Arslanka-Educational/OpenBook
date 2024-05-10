@@ -10,7 +10,7 @@ import openBook.model.BookInfo
  */
 data class BookGetByNameResponse(
 
-    @get:JsonProperty("books_info") val booksInfo: kotlin.collections.List<BookInfo>? = null
+    @get:JsonProperty("books_info", required = true) val booksInfo: kotlin.collections.List<BookInfo>
 ) {
 
 }

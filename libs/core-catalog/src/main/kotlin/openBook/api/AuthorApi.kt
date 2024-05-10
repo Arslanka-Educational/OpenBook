@@ -5,7 +5,8 @@
 */
 package openBook.api
 
-import openBook.model.AuthorDetailsResponse
+import openBook.model.Author
+import openBook.model.ErrorResponse
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
@@ -28,5 +29,5 @@ interface AuthorApi {
             value = ["/v1/author/details/{author_id}"],
             produces = ["application/json"]
     )
-    suspend fun v1AuthorDetailsAuthorIdGet( @PathVariable("author_id") authorId: java.util.UUID): ResponseEntity<AuthorDetailsResponse>
+    suspend fun v1AuthorDetailsAuthorIdGet( @PathVariable("author_id") authorId: java.util.UUID): ResponseEntity<Author>
 }

@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonProperty
  * @param id 
  * @param name author's name
  */
-data class AuthorDetailsResponse(
+data class Author(
 
     @get:JsonProperty("id", required = true) val id: java.util.UUID,
 

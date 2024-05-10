@@ -8,6 +8,8 @@ paths: { }
 components:
   schemas:
     BookGetByNameResponse:
+      required:
+        - books_info
       type: object
       properties:
         books_info:
