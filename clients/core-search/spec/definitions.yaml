@@ -33,9 +33,9 @@ components:
       type: object
       required:
         - id
-        - libraryId
-        - bookInfoId
-        - status
+#        - libraryId
+#        - bookInfoId
+#        - status
       properties:
         id:
           type: string

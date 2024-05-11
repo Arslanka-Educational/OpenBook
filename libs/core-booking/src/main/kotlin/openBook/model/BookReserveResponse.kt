@@ -10,9 +10,9 @@ import com.fasterxml.jackson.annotation.JsonProperty
  */
 data class BookReserveResponse(
 
-    @get:JsonProperty("reserved_date", required = true) val reservedDate: java.time.LocalDate,
+    @get:JsonProperty("reserved_date", required = true) val reservedDate: java.time.OffsetDateTime,
 
-    @get:JsonProperty("reservation_expiration_date", required = true) val reservationExpirationDate: java.time.LocalDate
+    @get:JsonProperty("reservation_expiration_date", required = true) val reservationExpirationDate: java.time.OffsetDateTime
 ) {
 
 }

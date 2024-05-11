@@ -1,7 +1,7 @@
-package org.example.adapters.out.rest.external
+package org.example.adapters.out.rest
 
 import openBook.model.*
-import org.example.ports.out.rest.external.CoreSearchAdapter
+import org.example.ports.out.rest.CoreSearchAdapter
 import org.springframework.stereotype.Service
 import org.springframework.web.reactive.function.client.WebClient
 import org.springframework.web.reactive.function.client.awaitBody

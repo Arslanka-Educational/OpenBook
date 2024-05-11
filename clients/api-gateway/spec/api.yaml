@@ -96,7 +96,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '../../core-search/spec/responses.yaml#/components/schemas/AuthorDetailsResponse'
+                $ref: '../../core-search/spec/definitions.yaml#/components/schemas/Author'
 
   /v1/library/details/{library_id}:
     get:
@@ -115,7 +115,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '../../core-search/spec/responses.yaml#/components/schemas/LibraryDetailsResponse'
+                $ref: '../../core-search/spec/definitions.yaml#/components/schemas/Library'
 
   #  core-booking
   /v1/booking/reserve:

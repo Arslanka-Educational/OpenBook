@@ -9,7 +9,6 @@ import openBook.model.BookStatus
  * 
  * @param id 
  * @param bookInfoId 
- * @param publisherId key to a book publication id
  * @param libraryId library this is in
  * @param status 
  */
@@ -17,13 +16,11 @@ data class Book(
 
     @get:JsonProperty("id", required = true) val id: java.util.UUID,
 
-    @get:JsonProperty("bookInfoId", required = true) val bookInfoId: java.util.UUID,
+    @get:JsonProperty("bookInfoId") val bookInfoId: java.util.UUID? = null,
 
-    @get:JsonProperty("publisherId", required = true) val publisherId: java.util.UUID,
+    @get:JsonProperty("libraryId") val libraryId: java.util.UUID? = null,
 
-    @get:JsonProperty("libraryId", required = true) val libraryId: java.util.UUID,
-
-    @get:JsonProperty("status", required = true) val status: BookStatus = BookStatus.uNAVAILABLE
+    @get:JsonProperty("status") val status: BookStatus? = null
 ) {
 
 }

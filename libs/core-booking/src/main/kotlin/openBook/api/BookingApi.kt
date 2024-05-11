@@ -5,7 +5,9 @@
 */
 package openBook.api
 
+import openBook.model.BookReservationId
 import openBook.model.BookReserveResponse
+import openBook.model.ErrorResponse
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
@@ -29,5 +31,5 @@ interface BookingApi {
             produces = ["application/json"],
             consumes = ["application/json"]
     )
-    suspend fun v1ReservePost( @RequestBody body: java.util.UUID): ResponseEntity<BookReserveResponse>
+    suspend fun v1ReservePost( @RequestBody bookReservationId: BookReservationId): ResponseEntity<BookReserveResponse>
 }

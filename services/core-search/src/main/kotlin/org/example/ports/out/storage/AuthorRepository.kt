@@ -1,4 +1,4 @@
-package org.example.ports.out
+package org.example.ports.out.storage
 
 import openBook.model.Author
 import java.util.UUID

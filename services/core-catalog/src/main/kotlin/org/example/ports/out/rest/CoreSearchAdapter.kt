@@ -1,4 +1,4 @@
-package org.example.ports.out.rest.external
+package org.example.ports.out.rest
 
 import openBook.model.Author
 import openBook.model.Book

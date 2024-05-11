@@ -2,7 +2,7 @@ package org.example.domain.services
 
 import openBook.model.Library
 import org.example.domain.model.exceptions.LibraryNotFoundException
-import org.example.ports.out.rest.external.CoreSearchAdapter
+import org.example.ports.out.rest.CoreSearchAdapter
 import org.springframework.stereotype.Service
 import java.util.*
 

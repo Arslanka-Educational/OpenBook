@@ -1,18 +1,18 @@
 package org.example.adapters.`in`.rest
 
 import openBook.api.BookingApi
+import openBook.model.BookReservationId
 import openBook.model.BookReserveResponse
-import org.example.ports.`in`.BookReserveUseCase
+import org.example.ports.`in`.BookReservationUseCase
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.RestController
-import java.util.*
 
 @RestController
 class BookingController(
-    private val reservationService: BookReserveUseCase
+    private val reservationService: BookReservationUseCase
 ) : BookingApi {
-    override suspend fun v1ReservePost(body: UUID): ResponseEntity<BookReserveResponse> {
-        val reservation = reservationService.bookReserve(body)
+    override suspend fun v1ReservePost(bookReservationId: BookReservationId): ResponseEntity<BookReserveResponse> {
+        val reservation = reservationService.reserveBook(bookReservationId.bookId)
         return ResponseEntity.ok().body(reservation)
     }
 }

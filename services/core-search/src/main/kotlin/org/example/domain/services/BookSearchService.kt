@@ -3,7 +3,7 @@ package org.example.domain.services
 import openBook.model.Book
 import openBook.model.BookInfo
 import org.example.ports.`in`.BookSearchUseCase
-import org.example.ports.out.BookRepository
+import org.example.ports.out.storage.BookRepository
 import org.springframework.stereotype.Service
 import java.util.*
 

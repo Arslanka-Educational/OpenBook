@@ -2,7 +2,7 @@ package org.example.domain.services
 
 import openBook.model.Library
 import org.example.ports.`in`.LibrarySearchUseCase
-import org.example.ports.out.LibraryRepository
+import org.example.ports.out.storage.LibraryRepository
 import org.springframework.stereotype.Service
 import java.util.*
 

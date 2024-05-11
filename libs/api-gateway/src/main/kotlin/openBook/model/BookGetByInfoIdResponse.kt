@@ -13,7 +13,7 @@ data class BookGetByInfoIdResponse(
 
     @get:JsonProperty("bookInfoId", required = true) val bookInfoId: java.util.UUID,
 
-    @get:JsonProperty("books", required = true) val books: kotlin.collections.List<Book> = arrayListOf()
+    @get:JsonProperty("books", required = true) val books: kotlin.collections.List<Book>
 ) {
 
 }

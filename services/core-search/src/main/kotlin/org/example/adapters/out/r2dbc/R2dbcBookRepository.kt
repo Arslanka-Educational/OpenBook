@@ -4,7 +4,7 @@ import kotlinx.coroutines.reactive.awaitFirst
 import openBook.model.Book
 import openBook.model.BookInfo
 import openBook.model.BookStatus
-import org.example.ports.out.BookRepository
+import org.example.ports.out.storage.BookRepository
 import org.springframework.r2dbc.core.DatabaseClient
 import org.springframework.r2dbc.core.awaitOneOrNull
 import org.springframework.stereotype.Repository

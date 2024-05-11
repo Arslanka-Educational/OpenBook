@@ -15,7 +15,7 @@ components:
       properties:
         reserved_date:
           type: string
-          format: date
+          format: date-time
         reservation_expiration_date:
           type: string
-          format: date
+          format: date-time

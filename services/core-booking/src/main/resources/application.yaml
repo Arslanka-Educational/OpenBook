@@ -1,13 +1,17 @@
 spring:
   application:
-    name: core-search
+    name: core-booking
   r2dbc:
     username: ${SPRING_DATASOURCE_USERNAME}
     password: ${SPRING_DATASOURCE_PASSWORD}
-    url: ${SPRING_DATASOURCE_URL}
-
+    url: r2dbc:postgresql://core-booking-postgresql:5432/core_booking
+#    url: ${SPRING_DATASOURCE_URL}
 server:
   port: 8082
+
+application:
+  reservation:
+    reservation_time: 864000 #10 days
 
 external:
   core-catalog-writer:
