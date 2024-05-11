@@ -28,6 +28,25 @@ paths:
               schema:
                 $ref: '../../core-search/spec/responses.yaml#/components/schemas/ErrorResponse'
 
+  /v1/reservation/{book_id}:
+    get:
+      tags:
+        - Booking
+      parameters:
+        - in: path
+          name: book_id
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: './responses.yaml#/components/schemas/BookReservationDetailsResponse'
+
 components:
   schemas:
     BookReservationId:

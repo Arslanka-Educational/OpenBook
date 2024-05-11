@@ -1,8 +1,10 @@
 package org.example.domain.services
 
 import openBook.model.Book
+import openBook.model.BookReservationDetailsResponse
 import openBook.model.BookReserveResponse
 import openBook.model.BookStatus
+import org.example.domain.exceptions.BookNotFoundException
 import org.example.ports.`in`.BookReservationUseCase
 import org.example.ports.out.rest.CoreCatalogWriterAdapter
 import org.example.ports.out.storage.ReservationRepository
@@ -21,6 +23,11 @@ class BookReservationService(
 
     @Value("\${application.reservation.reservation_time}")
     private val reservationTime: Long = 864000
+    override suspend fun getReservationDetails(bookId: UUID): BookReservationDetailsResponse {
+        return reservationRepository.getReservationInfo(bookId)
+            ?: throw BookNotFoundException("Book with id: $bookId not found")
+    }
+
     override suspend fun reserveBook(bookId: UUID): BookReserveResponse {
         val book = Book(
             id = bookId,

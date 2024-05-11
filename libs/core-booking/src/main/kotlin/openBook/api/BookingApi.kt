@@ -5,6 +5,7 @@
 */
 package openBook.api
 
+import openBook.model.BookReservationDetailsResponse
 import openBook.model.BookReservationId
 import openBook.model.BookReserveResponse
 import openBook.model.ErrorResponse
@@ -23,6 +24,14 @@ import kotlin.collections.Map
 
 @RequestMapping("\${api.base-path:}")
 interface BookingApi {
+
+
+    @RequestMapping(
+            method = [RequestMethod.GET],
+            value = ["/v1/reservation/{book_id}"],
+            produces = ["application/json"]
+    )
+    suspend fun v1ReservationBookIdGet( @PathVariable("book_id") bookId: java.util.UUID): ResponseEntity<BookReservationDetailsResponse>
 
 
     @RequestMapping(

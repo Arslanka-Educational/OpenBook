@@ -1,6 +1,7 @@
 package org.example.ports.out.storage
 
 import openBook.model.Book
+import openBook.model.BookReservationDetailsResponse
 import java.time.Instant
 import java.util.*
 
@@ -10,6 +11,6 @@ interface ReservationRepository {
 
     suspend fun removeReservation(book: Book): Boolean
 
-    suspend fun getReservationInfo(book: Book): Pair<UUID, Instant>?
+    suspend fun getReservationInfo(bookId: UUID): BookReservationDetailsResponse?
 
 }
