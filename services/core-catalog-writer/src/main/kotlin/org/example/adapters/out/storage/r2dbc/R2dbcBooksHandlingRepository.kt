@@ -1,5 +1,6 @@
 package org.example.adapters.out.storage.r2dbc
 
+import kotlinx.coroutines.reactive.awaitFirst
 import kotlinx.coroutines.reactive.awaitFirstOrNull
 import openBook.model.Book
 import openBook.model.BookInfo
@@ -39,7 +40,7 @@ class R2dbcBooksHandlingRepository(
                     .add()
             }
             return@inConnectionMany Flux.from(statement.execute())
-        }
+        }.awaitFirst()
     }
 
     override suspend fun changeBookDetails(book: Book) {
