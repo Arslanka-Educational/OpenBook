@@ -12,13 +12,13 @@ class CoreSearchAdapterService(
 ) : CoreSearchAdapter {
     override suspend fun getBookInfoByName(name: String): List<BookInfo> =
         coreSearchWebClient.get()
-            .uri("/v1/book/get-by-name/${name}")
+            .uri("/v1/book/by-name/${name}")
             .retrieve()
             .awaitBody<BookGetByNameResponse>().booksInfo
 
     override suspend fun getBooksByInfoId(bookInfoId: UUID): List<Book> =
         coreSearchWebClient.get()
-            .uri("/v1/book/get-by-info/${bookInfoId}")
+            .uri("/v1/book/by-info/${bookInfoId}")
             .retrieve()
             .awaitBody<BookGetByInfoIdResponse>().books
 
