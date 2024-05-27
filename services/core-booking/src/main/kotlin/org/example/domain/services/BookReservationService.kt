@@ -4,9 +4,9 @@ import openBook.model.Book
 import openBook.model.BookReservationDetailsResponse
 import openBook.model.BookReserveResponse
 import openBook.model.BookStatus
-import org.example.domain.exceptions.BookNotFoundException
+import org.example.adapter.CoreCatalogWriterAdapter
+import org.example.exception.BookNotFoundException
 import org.example.ports.`in`.BookReservationUseCase
-import org.example.ports.out.rest.CoreCatalogWriterAdapter
 import org.example.ports.out.storage.ReservationRepository
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service

@@ -1,0 +1,12 @@
+server:
+  port: 8080
+
+external:
+  core-booking:
+    url: ${CORE_BOOKING_URL}
+  core-catalog:
+    url: ${CORE_CATALOG_URL}
+  core-catalog-writer:
+    url: ${CORE_CATALOG_WRITER_URL}
+  core-search:
+    url: ${CORE_SEARCH_URL}

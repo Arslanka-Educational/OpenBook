@@ -13,7 +13,7 @@ import java.util.*
 class BookSearchController(
     private val bookService: BookSearchUseCase
 ) : BookApi {
-    override suspend fun v1BookGetByInfoBookInfoIdGet(bookInfoId: UUID): ResponseEntity<BookGetByInfoIdResponse> {
+    override suspend fun v1BookByInfoBookInfoIdGet(bookInfoId: UUID): ResponseEntity<BookGetByInfoIdResponse> {
         val booksList = bookService.getBooksByInfoId(bookInfoId)
         return ResponseEntity.ok().body(
             BookGetByInfoIdResponse(
@@ -28,7 +28,7 @@ class BookSearchController(
         return ResponseEntity.ok().body(bookInfo)
     }
 
-    override suspend fun v1BookGetByNameBookNameGet(bookName: String): ResponseEntity<BookGetByNameResponse> {
+    override suspend fun v1BookByNameBookNameGet(bookName: String): ResponseEntity<BookGetByNameResponse> {
         val bookInfoList = bookService.getBookInfoByName(bookName)
         return ResponseEntity.ok().body(
             BookGetByNameResponse(

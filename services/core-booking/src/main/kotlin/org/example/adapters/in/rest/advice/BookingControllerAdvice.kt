@@ -1,7 +1,7 @@
 package org.example.adapters.`in`.rest.advice
 
 import openBook.model.ErrorResponse
-import org.example.domain.exceptions.BookNotFoundException
+import org.example.exception.BookNotFoundException
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.ControllerAdvice

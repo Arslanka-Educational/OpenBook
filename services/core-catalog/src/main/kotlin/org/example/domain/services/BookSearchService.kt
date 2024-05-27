@@ -1,8 +1,8 @@
 package org.example.domain.services
 
 import openBook.model.BookInfo
+import org.example.adapter.CoreSearchAdapter
 import org.example.domain.model.exceptions.BookInfoNotFoundException
-import org.example.ports.out.rest.CoreSearchAdapter
 import org.springframework.stereotype.Service
 import java.util.*
 

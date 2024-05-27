@@ -1,0 +1,198 @@
+openapi: 3.0.3
+info:
+  title: api gateway
+  description: api gateway
+  version: 1.0.0
+paths:
+  #  core-client
+  /v1/client/login:
+    post:
+      tags:
+        - Client
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '../../core-client/spec/definitions.yaml#/components/schemas/ClientLoginRequest'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '../../core-client/spec/responses.yaml#/components/schemas/JwtLoginResponse'
+
+  /v1/client/register:
+    post:
+      tags:
+        - Client
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '../../core-client/spec/definitions.yaml#/components/schemas/ClientRegisterRequest'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '../../core-client/spec/responses.yaml#/components/schemas/JwtLoginResponse'
+
+  # core-catalog
+  /v1/book/by-name/{book_name}:
+    get:
+      tags:
+        - Book
+      parameters:
+        - in: path
+          name: book_name
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '../../core-search/spec/responses.yaml#/components/schemas/BookGetByNameResponse'
+
+  /v1/book/info-details/{book_info_id}:
+    get:
+      tags:
+        - Book
+      parameters:
+        - in: path
+          name: book_info_id
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '../../core-search/spec/definitions.yaml#/components/schemas/BookInfo'
+        404:
+          description: Library not found
+          content:
+            application/json:
+              schema:
+                $ref: '../../core-search/spec/responses.yaml#/components/schemas/ErrorResponse'
+
+  /v1/book/by-info/{book_info_id}:
+    get:
+      tags:
+        - Book
+      parameters:
+        - in: path
+          name: book_info_id
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '../../core-search/spec/responses.yaml#/components/schemas/BookGetByInfoIdResponse'
+
+  /v1/author/details/{author_id}:
+    get:
+      tags:
+        - Author
+      parameters:
+        - in: path
+          name: author_id
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '../../core-search/spec/definitions.yaml#/components/schemas/Author'
+
+  /v1/library/details/{library_id}:
+    get:
+      tags:
+        - Library
+      parameters:
+        - in: path
+          name: library_id
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '../../core-search/spec/definitions.yaml#/components/schemas/Library'
+
+  #  core-booking
+  /v1/reserve:
+    post:
+      tags:
+        - Booking
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: './api.yaml#/components/schemas/BookReservationId'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '../../core-booking/spec/responses.yaml#/components/schemas/BookReserveResponse'
+        404:
+          description: NOT FOUND
+          content:
+            application/json:
+              schema:
+                $ref: '../../core-search/spec/responses.yaml#/components/schemas/ErrorResponse'
+
+  /v1/reservation/{book_id}:
+    get:
+      tags:
+        - Booking
+      parameters:
+        - in: path
+          name: book_id
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '../../core-booking/spec/responses.yaml#/components/schemas/BookReservationDetailsResponse'
+
+components:
+  schemas:
+    BookReservationId:
+      type: object
+      required:
+        - book_id
+      properties:
+        book_id:
+          type: string
+          format: uuid

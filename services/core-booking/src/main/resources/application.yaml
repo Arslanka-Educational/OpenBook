@@ -15,4 +15,4 @@ application:
 
 external:
   core-catalog-writer:
-    address: ${CORE_CATALOG_WRITER_URL}
+    url: ${CORE_CATALOG_WRITER_URL}

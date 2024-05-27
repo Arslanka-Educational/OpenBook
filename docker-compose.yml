@@ -1,6 +1,27 @@
 version: "3.0"
 
 services:
+  core-gateway:
+    container_name: core-gateway
+    image: openjdk:17-ea-16-jdk
+    volumes:
+      - ./services/core-gateway/build/libs/core-gateway.jar:/core-gateway.jar
+    command: [ "java", "-jar", "/core-gateway.jar" ]
+    ports:
+      - "8080:8080"
+    depends_on:
+      - core-catalog-writer
+      - core-search
+      - core-catalog
+      - core-booking
+    networks:
+      - core-network
+    environment:
+      CORE_CATALOG_URL: http://core-catalog:8084
+      CORE_CATALOG_WRITER_URL: http://core-catalog-writer:8083
+      CORE_BOOKING_URL: http://core-booking:8082
+      CORE_SEARCH_URL: http://core-catalog:8081
+
   core-catalog-writer:
     container_name: core-catalog-writer
     image: openjdk:17-ea-16-jdk
@@ -44,7 +65,7 @@ services:
       - ./services/core-catalog/build/libs/core-catalog.jar:/core-catalog.jar
     command: [ "java", "-jar", "core-catalog.jar" ]
     ports:
-      - "8080:8080"
+      - "8084:8084"
     depends_on:
       - core-search
     networks:

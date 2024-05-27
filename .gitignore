@@ -4,7 +4,7 @@
 **/.idea
 **/build
 **/.gradle
-
+**/java
 # Log file
 *.log
 
