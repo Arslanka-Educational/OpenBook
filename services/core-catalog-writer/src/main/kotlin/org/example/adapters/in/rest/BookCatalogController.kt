@@ -14,9 +14,7 @@ class BookCatalogController(
     private val booksHandlingUseCase: BooksHandlingUseCase
 ) : BookCatalogApi {
     override suspend fun v1BookChangeDetailsPut(book: Book): ResponseEntity<Book> {
-        return ResponseEntity.ok().body(
-            book //todo: implement it
-        )
+        return ResponseEntity.ok().body(booksHandlingUseCase.changeBookDetails(book))
     }
 
     override suspend fun v1BookCreateBookInfoPost(bookInfoCreateDetails: BookInfoCreateDetails): ResponseEntity<BookInfo> {

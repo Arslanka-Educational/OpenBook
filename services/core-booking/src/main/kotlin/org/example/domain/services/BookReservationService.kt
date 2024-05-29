@@ -10,6 +10,7 @@ import org.example.ports.`in`.BookReservationUseCase
 import org.example.ports.out.storage.ReservationRepository
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 import java.time.Instant
 import java.time.OffsetDateTime
 import java.time.ZoneOffset
@@ -28,6 +29,7 @@ class BookReservationService(
             ?: throw BookNotFoundException("Book with id: $bookId not found")
     }
 
+    @Transactional
     override suspend fun reserveBook(bookId: UUID): BookReserveResponse {
         val book = Book(
             id = bookId,
@@ -35,6 +37,7 @@ class BookReservationService(
         )
         val reservedDate = Instant.now()
         val reservedDueDate = reservedDate.plusSeconds(reservationTime)
+
         coreCatalogWriterAdapter.updateBook(book)
         reservationRepository.reserveBook(
             book = book,

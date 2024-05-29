@@ -65,18 +65,18 @@ class BooksHandlingService(
         return bookInfo
     }
 
-    override suspend fun changeBookDetails(book: Book) {
+    @Transactional
+    override suspend fun changeBookDetails(book: Book): Book {
         val bookInstance = booksHandlingRepository.getBookById(book.id)
-
-//        val resBook = bookInstance?.let {
-//            Book(
-//                id = book.id,
-//                bookInfoId = it.bookInfoId?.
-//            )
-//        }
-//        if (bookInstance.bookInfoId != null && book.bookInfoId != null && bookInstance.bookInfoId != book.bookInfoId) {
-//            resBook.bookInfoId = book.bookInfoId
-//        }
-        booksHandlingRepository.changeBookDetails(book)
+        val resBook = bookInstance?.let {
+            Book(
+                id = book.id,
+                bookInfoId = bookInstance.bookInfoId,
+                libraryId = book.libraryId ?: bookInstance.libraryId,
+                status = book.status ?: bookInstance.status,
+            )
+        } ?: book
+        booksHandlingRepository.changeBookDetails(resBook)
+        return book
     }
 }

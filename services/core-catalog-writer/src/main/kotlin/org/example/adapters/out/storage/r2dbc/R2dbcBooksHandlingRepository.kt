@@ -1,11 +1,11 @@
 package org.example.adapters.out.storage.r2dbc
 
-import kotlinx.coroutines.reactive.awaitFirst
 import kotlinx.coroutines.reactive.awaitFirstOrNull
 import openBook.model.Book
 import openBook.model.BookInfo
 import openBook.model.BookInfoCreateDetails
 import openBook.model.BookStatus
+import org.example.adapters.out.storage.r2dbc.util.BookStatusUtil
 import org.example.ports.out.storage.BooksHandlingRepository
 import org.springframework.r2dbc.core.DatabaseClient
 import org.springframework.r2dbc.core.awaitRowsUpdated
@@ -30,23 +30,21 @@ class R2dbcBooksHandlingRepository(
 
     override suspend fun insertBooksListIntoLibrary(booksList: List<Book>, libraryId: UUID) {
         databaseClient.inConnectionMany { conn ->
-            val statement = conn.createStatement(INSERT_BOOK_LIST_INTO_LIBRARY)
-            booksList.forEach {
-                statement
+            val inserts = booksList.map {
+                databaseClient.sql(INSERT_BOOK_LIST_INTO_LIBRARY)
                     .bind("id", it.id)
                     .bind("book_info_id", it.bookInfoId!!)
                     .bind("library_id", libraryId)
                     .bind("status", it.status!!.value)
-                    .add()
+                    .then()
             }
-            return@inConnectionMany Flux.from(statement.execute())
-        }.awaitFirst()
+            return@inConnectionMany Flux.concat(inserts)
+        }.then().awaitFirstOrNull()
     }
 
     override suspend fun changeBookDetails(book: Book) {
         databaseClient
             .sql(UPDATE_BOOK_DETAILS_BY_ID)
-            .bind("book_info_id", book.bookInfoId!!)
             .bind("library_id", book.libraryId!!)
             .bind("status", book.status!!.value)
             .bind("book_id", book.id)
@@ -75,7 +73,7 @@ class R2dbcBooksHandlingRepository(
             Book(
                 id = r.get("id") as UUID,
                 libraryId = r.get("library_id") as UUID,
-                status = r.get("status") as BookStatus,
+                status = BookStatusUtil.fromValue(r.get("status") as String),
                 bookInfoId = r.get("id") as UUID
             )
         }.awaitSingleOrNull()
@@ -83,11 +81,11 @@ class R2dbcBooksHandlingRepository(
 
     private companion object {
         private val INSERT_BOOK_LIST_INTO_LIBRARY = """
-            INSERT INTO book(id, book_info_id, library_id, status) VALUES (:id, :book_info_id, :library_id, :status)
+            INSERT INTO book(id, book_info_id, library_id, status) VALUES (:id, :book_info_id, :library_id, :status::booking_status)
         """.trimIndent()
 
         private val UPDATE_BOOK_DETAILS_BY_ID = """
-            UPDATE book SET book_info_id=:book_info_id, library_id=:library_id, status=:status WHERE id=:book_id
+            UPDATE book SET library_id=:library_id, status=:status::booking_status WHERE id=:book_id
         """.trimIndent()
 
         private val CREATE_BOOK_INFO = """

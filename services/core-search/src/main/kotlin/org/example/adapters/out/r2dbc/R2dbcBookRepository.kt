@@ -3,7 +3,7 @@ package org.example.adapters.out.r2dbc
 import kotlinx.coroutines.reactive.awaitFirst
 import openBook.model.Book
 import openBook.model.BookInfo
-import openBook.model.BookStatus
+import org.example.adapters.out.r2dbc.util.BookStatusUtil
 import org.example.ports.out.storage.BookRepository
 import org.springframework.r2dbc.core.DatabaseClient
 import org.springframework.r2dbc.core.awaitOneOrNull
@@ -22,7 +22,7 @@ class R2dbcBookRepository(
                 id = r.get("id") as UUID,
                 libraryId = r.get("library_id") as UUID,
                 bookInfoId = r.get("book_info_id") as UUID,
-                status = BookStatus.valueOf(r.get("status") as String)
+                status = BookStatusUtil.fromValue(r.get("status") as String)
             )
         }.all()  // Fetch all rows
         .collectList()

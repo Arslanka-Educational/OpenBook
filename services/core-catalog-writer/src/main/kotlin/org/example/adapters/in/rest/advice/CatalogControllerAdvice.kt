@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler
 class CatalogControllerAdvice {
     @ExceptionHandler
     fun handleException(exception: Exception): ResponseEntity<ErrorResponse> {
-        println(exception.message)
         exception.printStackTrace()
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
             .body(
