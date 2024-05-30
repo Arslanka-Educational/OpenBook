@@ -17,12 +17,10 @@ class CoreCatalogWriterAdapterService(
         .contentType(MediaType.APPLICATION_JSON)
         .bodyValue(book)
         .awaitExchange {
-            if (it.statusCode() == HttpStatus.OK) {
-                return@awaitExchange true
-            } else if (it.statusCode() == HttpStatus.NOT_FOUND) {
-                throw BookNotFoundException("Book with id: ${book.id} wasn't found")
-            } else {
-                throw Exception("Couldn't update book with id ${book.id}")
+            when (it.statusCode()) {
+                HttpStatus.OK -> return@awaitExchange true
+                HttpStatus.NOT_FOUND -> throw BookNotFoundException("Book with id: ${book.id} wasn't found")
+                else -> throw Exception("Couldn't update book with id ${book.id}")
             }
         }
 }

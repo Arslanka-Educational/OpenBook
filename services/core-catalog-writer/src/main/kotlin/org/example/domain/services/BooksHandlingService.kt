@@ -53,6 +53,7 @@ class BooksHandlingService(
         }
     }
 
+    @Transactional
     override suspend fun createBookInfo(bookInfoCreateDetails: BookInfoCreateDetails): BookInfo {
         val bookInfo = BookInfo(
             id = UUID.randomUUID(),
