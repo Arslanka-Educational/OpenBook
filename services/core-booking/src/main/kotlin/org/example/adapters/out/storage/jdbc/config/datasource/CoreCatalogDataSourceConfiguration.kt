@@ -16,7 +16,7 @@ import javax.sql.DataSource
 class CoreCatalogDataSourceConfiguration {
     @Bean
     @ConfigurationProperties("spring.datasource.jdbc.core-catalog")
-    fun coreCatalogDataSourceProperties(): DataSourceProperties = DataSourceProperties();
+    fun coreCatalogDataSourceProperties(): DataSourceProperties = DataSourceProperties()
 
     @Bean
     fun coreCatalogDataSource(): DataSource = coreCatalogDataSourceProperties()
