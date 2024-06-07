@@ -1,7 +1,7 @@
 package org.example.adapters.out.r2dbc
 
 import openBook.model.Author
-import org.example.ports.out.AuthorRepository
+import org.example.ports.out.storage.AuthorRepository
 import org.springframework.r2dbc.core.DatabaseClient
 import org.springframework.r2dbc.core.awaitOneOrNull
 import org.springframework.stereotype.Repository

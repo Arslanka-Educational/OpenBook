@@ -27,18 +27,18 @@ interface BookApi {
 
     @RequestMapping(
             method = [RequestMethod.GET],
-            value = ["/v1/book/get-by-info/{book_info_id}"],
+            value = ["/v1/book/by-info/{book_info_id}"],
             produces = ["application/json"]
     )
-    suspend fun v1BookGetByInfoBookInfoIdGet( @PathVariable("book_info_id") bookInfoId: java.util.UUID): ResponseEntity<BookGetByInfoIdResponse>
+    suspend fun v1BookByInfoBookInfoIdGet( @PathVariable("book_info_id") bookInfoId: java.util.UUID): ResponseEntity<BookGetByInfoIdResponse>
 
 
     @RequestMapping(
             method = [RequestMethod.GET],
-            value = ["/v1/book/get-by-name/{book_name}"],
+            value = ["/v1/book/by-name/{book_name}"],
             produces = ["application/json"]
     )
-    suspend fun v1BookGetByNameBookNameGet( @PathVariable("book_name") bookName: kotlin.String): ResponseEntity<BookGetByNameResponse>
+    suspend fun v1BookByNameBookNameGet( @PathVariable("book_name") bookName: kotlin.String): ResponseEntity<BookGetByNameResponse>
 
 
     @RequestMapping(

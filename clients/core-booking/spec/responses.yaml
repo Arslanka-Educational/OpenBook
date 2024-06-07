@@ -15,7 +15,24 @@ components:
       properties:
         reserved_date:
           type: string
-          format: date
+          format: date-time
         reservation_expiration_date:
           type: string
-          format: date
+          format: date-time
+
+    BookReservationDetailsResponse:
+      type: object
+      required:
+        - reserved_date
+        - reservation_expiration_date
+        - book_id
+      properties:
+        book_id:
+          type: string
+          format: uuid
+        reserved_date:
+          type: string
+          format: date-time
+        reservation_expiration_date:
+          type: string
+          format: date-time

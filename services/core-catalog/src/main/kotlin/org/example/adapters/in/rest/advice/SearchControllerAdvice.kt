@@ -40,7 +40,7 @@ class SearchControllerAdvice {
     }
 
     @ExceptionHandler
-    fun handleAuthorNotFoundException(exception: BookInfoNotFoundException): ResponseEntity<ErrorResponse> {
+    fun handleBookInfoNotFoundException(exception: BookInfoNotFoundException): ResponseEntity<ErrorResponse> {
         logger.warn(exception.message)
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
             .body(

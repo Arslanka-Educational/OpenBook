@@ -1,6 +1,63 @@
 version: "3.0"
 
 services:
+  core-gateway:
+    container_name: core-gateway
+    image: openjdk:17-ea-16-jdk
+    volumes:
+      - ./services/core-gateway/build/libs/core-gateway.jar:/core-gateway.jar
+    command: [ "java", "-jar", "/core-gateway.jar" ]
+    ports:
+      - "8080:8080"
+    depends_on:
+      - core-catalog-writer
+      - core-search
+      - core-catalog
+      - core-booking
+    networks:
+      - core-network
+    environment:
+      CORE_CATALOG_URL: http://core-catalog:8084
+      CORE_CATALOG_WRITER_URL: http://core-catalog-writer:8083
+      CORE_BOOKING_URL: http://core-booking:8082
+      CORE_SEARCH_URL: http://core-catalog:8081
+
+  core-catalog-writer:
+    container_name: core-catalog-writer
+    image: openjdk:17-ea-16-jdk
+    volumes:
+      - ./services/core-catalog-writer/build/libs/core-catalog-writer.jar:/core-catalog-writer.jar
+    command: [ "java", "-jar", "core-catalog-writer.jar" ]
+    ports:
+      - "8083:8083"
+    depends_on:
+      - core-catalog-postgresql
+    networks:
+      - core-network
+    environment:
+      SPRING_DATASOURCE_URL: r2dbc:postgresql://core-catalog-postgresql:5432/books_catalog
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: root
+
+  core-booking:
+    container_name: core-booking
+    image: openjdk:17-ea-16-jdk
+    volumes:
+      - ./services/core-booking/build/libs/core-booking.jar:/core-booking.jar
+    command: [ "java", "-jar", "core-booking.jar" ]
+    ports:
+      - "8082:8082"
+    depends_on:
+      - core-catalog-writer
+      - core-booking-postgresql
+    networks:
+      - core-network
+    environment:
+      CORE_CATALOG_WRITER_URL: http://core-catalog-writer:8083
+      SPRING_DATASOURCE_URL: r2dbc:postgresql://core-booking-postgresql:5431/core_booking
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: root
+
   core-catalog:
     container_name: core-catalog
     image: openjdk:17-ea-16-jdk
@@ -8,7 +65,7 @@ services:
       - ./services/core-catalog/build/libs/core-catalog.jar:/core-catalog.jar
     command: [ "java", "-jar", "core-catalog.jar" ]
     ports:
-      - "8080:8080"
+      - "8084:8084"
     depends_on:
       - core-search
     networks:
@@ -25,15 +82,15 @@ services:
     ports:
       - "8081:8081"
     depends_on:
-      - core-search-postgresql
+      - core-catalog-postgresql
     environment:
-      SPRING_DATASOURCE_URL: r2dbc:postgresql://core-search-postgresql:5432/books_catalog
+      SPRING_DATASOURCE_URL: r2dbc:postgresql://core-catalog-postgresql:5432/books_catalog
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: root
     networks:
       - core-network
 
-  core-search-postgresql:
+  core-catalog-postgresql:
     image: postgres:16
     ports:
       - "5432:5432"
@@ -44,6 +101,20 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: root
     hostname: "postgres"
+    networks:
+      - core-network
+
+  core-booking-postgresql:
+    image: postgres:16
+    ports:
+      - "5431:5431"
+    volumes:
+      - ./services/core-booking/src/main/resources/sql:/docker-entrypoint-initdb.d
+    environment:
+      POSTGRES_DB: core_booking
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: root
+#    hostname: "postgres"
     networks:
       - core-network
 

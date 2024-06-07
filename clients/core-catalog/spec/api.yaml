@@ -4,7 +4,7 @@ info:
   description: api
   version: 1.0.0
 paths:
-  /v1/book/get-by-name/{book_name}:
+  /v1/book/by-name/{book_name}:
     get:
       tags:
         - Book
@@ -47,7 +47,7 @@ paths:
               schema:
                 $ref: '../../core-search/spec/responses.yaml#/components/schemas/ErrorResponse'
 
-  /v1/book/get-by-info/{book_info_id}:
+  /v1/book/by-info/{book_info_id}:
     get:
       tags:
         - Book

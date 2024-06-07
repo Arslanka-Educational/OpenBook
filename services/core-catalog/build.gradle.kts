@@ -1,5 +1,4 @@
 import org.jetbrains.kotlin.gradle.plugin.mpp.pm20.util.archivesName
-import org.springframework.boot.gradle.tasks.bundling.BootJar
 
 plugins {
     kotlin("jvm") version "1.9.21"
@@ -9,11 +8,7 @@ plugins {
     kotlin("plugin.spring") version "1.9.22"
 }
 
-project.archivesName= "core-catalog"
-
-tasks.withType<BootJar> {
-    archiveBaseName.set("core-catalog")
-}
+project.archivesName = "core-catalog"
 
 kotlin {
     jvmToolchain(17)
@@ -27,13 +22,12 @@ repositories {
 }
 
 dependencies {
-    testImplementation(platform("org.junit:junit-bom:5.9.1"))
-    testImplementation("org.junit.jupiter:junit-jupiter")
     implementation(project(":libs:core-catalog"))
+    implementation(project(":services:adapters:core-search"))
     implementation("org.springframework.boot:spring-boot-starter-webflux")
     implementation("io.projectreactor.kotlin:reactor-kotlin-extensions")
 }
 
-tasks.test {
-    useJUnitPlatform()
+tasks.bootJar {
+    archiveClassifier = ""
 }

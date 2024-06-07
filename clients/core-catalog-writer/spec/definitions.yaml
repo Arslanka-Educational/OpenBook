@@ -1,0 +1,59 @@
+openapi: 3.0.3
+info:
+  title: core-book-writer definitions
+  description: core-book-writer definitions
+  version: 1.0.0
+paths: { }
+
+components:
+  schemas:
+    InsertBookIntoLibraryRequest:
+      type: object
+      required:
+        - library_id
+        - books_list
+      properties:
+        library_id:
+          type: string
+          format: uuid
+        books_list:
+          type: array
+          items:
+            $ref: '#/components/schemas/BookInfoCreateDetails'
+
+    BookInfoCreateDetails:
+      type: object
+      required:
+        - name
+        - author_id
+        - publisher_id
+      properties:
+        name:
+          type: string
+        author_id:
+          type: string
+          format: uuid
+        publisher_id:
+          type: string
+          format: uuid
+
+    AuthorCreateDetails:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+
+    LibraryCreateDetails:
+      type: object
+      required:
+        - name
+        - city
+      properties:
+        name:
+          type: string
+          description: library's name
+        city:
+          type: string
+          description: city library located

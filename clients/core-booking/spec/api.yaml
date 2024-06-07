@@ -13,8 +13,7 @@ paths:
         content:
           application/json:
             schema:
-              type: string
-              format: uuid
+              $ref: './api.yaml#/components/schemas/BookReservationId'
       responses:
         200:
           description: OK
@@ -22,3 +21,39 @@ paths:
             application/json:
               schema:
                 $ref: './responses.yaml#/components/schemas/BookReserveResponse'
+        404:
+          description: NOT FOUND
+          content:
+            application/json:
+              schema:
+                $ref: '../../core-search/spec/responses.yaml#/components/schemas/ErrorResponse'
+
+  /v1/reservation/{book_id}:
+    get:
+      tags:
+        - Booking
+      parameters:
+        - in: path
+          name: book_id
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: './responses.yaml#/components/schemas/BookReservationDetailsResponse'
+
+components:
+  schemas:
+    BookReservationId:
+      type: object
+      required:
+        - book_id
+      properties:
+        book_id:
+          type: string
+          format: uuid
