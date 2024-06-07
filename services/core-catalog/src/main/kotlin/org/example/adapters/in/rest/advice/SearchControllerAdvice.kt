@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler
 
 @ControllerAdvice
 class SearchControllerAdvice {
-    private val logger = LoggerFactory.getLogger(javaClass)
 
     @ExceptionHandler
     fun handleException(exception: Exception): ResponseEntity<ErrorResponse> {
@@ -60,5 +59,9 @@ class SearchControllerAdvice {
                     status = HttpStatus.NOT_FOUND.value()
                 )
             )
+    }
+
+    private companion object {
+        private val logger = LoggerFactory.getLogger(javaClass)
     }
 }

@@ -1,13 +1,12 @@
 package org.example.domain.services
 
-import openBook.model.Book
 import openBook.model.BookReservationDetailsResponse
 import openBook.model.BookReserveResponse
 import openBook.model.BookStatus
-import org.example.adapter.CoreCatalogWriterAdapter
 import org.example.exception.BookNotFoundException
 import org.example.ports.`in`.BookReservationUseCase
-import org.example.ports.out.storage.ReservationRepository
+import org.example.ports.out.storage.BookDetailsRepository
+import org.example.ports.out.storage.BookingRepository
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
@@ -18,31 +17,33 @@ import java.util.*
 
 @Service
 class BookReservationService(
-    private val reservationRepository: ReservationRepository,
-    private val coreCatalogWriterAdapter: CoreCatalogWriterAdapter,
+    private val bookingRepository: BookingRepository,
+    private val bookDetailsRepository: BookDetailsRepository,
 ) : BookReservationUseCase {
 
     @Value("\${application.reservation.reservation_time}")
     private val reservationTime: Long = 864000
+
     override suspend fun getReservationDetails(bookId: UUID): BookReservationDetailsResponse {
-        return reservationRepository.getReservationInfo(bookId)
+        return bookingRepository.getReservationInfo(bookId)
             ?: throw BookNotFoundException("Book with id: $bookId not found")
     }
 
-    @Transactional
+    @Transactional(transactionManager = "jtaTransactionManager", rollbackFor = [Exception::class])
     override suspend fun reserveBook(bookId: UUID): BookReserveResponse {
-        val book = Book(
-            id = bookId,
+        val book = bookDetailsRepository.getBookDetails(bookId)?.copy(
             status = BookStatus.uNAVAILABLE
-        )
+        ) ?: throw BookNotFoundException("Book with id $bookId not found")
+
         val reservedDate = Instant.now()
         val reservedDueDate = reservedDate.plusSeconds(reservationTime)
 
-        coreCatalogWriterAdapter.updateBook(book)
-        reservationRepository.reserveBook(
+        bookDetailsRepository.updateBook(book)
+        bookingRepository.reserveBook( //todo: check if everything is updated
             book = book,
             reservationDate = reservedDate to reservedDueDate
         )
+        throw Exception()
 
         return BookReserveResponse(
             reservedDate = OffsetDateTime.ofInstant(reservedDate, ZoneOffset.UTC),

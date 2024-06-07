@@ -30,8 +30,14 @@ dependencies {
     implementation(project(":libs:core-search"))
     implementation(project(":services:adapters::core-catalog-writer"))
     implementation("org.springframework.boot:spring-boot-starter-webflux")
-    implementation("org.springframework.boot:spring-boot-starter-data-r2dbc")
-    implementation("org.postgresql:r2dbc-postgresql")
+    implementation("org.springframework.boot:spring-boot-starter-jdbc")
     implementation("io.projectreactor.kotlin:reactor-kotlin-extensions")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
+
+    implementation("com.atomikos:transactions-spring-boot3-starter:6.0.0")
+    implementation("javax.transaction:jta:1.1")
+
+    runtimeOnly("org.postgresql:postgresql")
+
+    implementation("net.javacrumbs.shedlock:shedlock-provider-jdbc-template:5.10.0")
 }
