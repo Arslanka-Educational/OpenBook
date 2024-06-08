@@ -50,13 +50,20 @@ services:
     depends_on:
       - core-catalog-writer
       - core-booking-postgresql
+      - core-catalog-postgresql
     networks:
       - core-network
     environment:
       CORE_CATALOG_WRITER_URL: http://core-catalog-writer:8083
-      SPRING_DATASOURCE_URL: r2dbc:postgresql://core-booking-postgresql:5431/core_booking
-      SPRING_DATASOURCE_USERNAME: postgres
-      SPRING_DATASOURCE_PASSWORD: root
+      #core-booking-postgresql
+      BOOKING_SPRING_DATASOURCE_URL: jdbc:postgresql://core-booking-postgresql:5432/core_booking
+      BOOKING_SPRING_DATASOURCE_USERNAME: postgres
+      BOOKING_SPRING_DATASOURCE_PASSWORD: root
+
+      #core-catalog-postgresql
+      CATALOG_SPRING_DATASOURCE_URL: jdbc:postgresql://core-catalog-postgresql:5432/books_catalog
+      CATALOG_SPRING_DATASOURCE_USERNAME: postgres
+      CATALOG_SPRING_DATASOURCE_PASSWORD: root
 
   core-catalog:
     container_name: core-catalog
@@ -107,7 +114,7 @@ services:
   core-booking-postgresql:
     image: postgres:16
     ports:
-      - "5431:5431"
+      - "5431:5432"
     volumes:
       - ./services/core-booking/src/main/resources/sql:/docker-entrypoint-initdb.d
     environment:

@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler
 class BookingControllerAdvice {
     @ExceptionHandler
     fun handleException(exception: Exception): ResponseEntity<ErrorResponse> {
-        println(exception.message)
         exception.printStackTrace()
 
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -25,7 +24,6 @@ class BookingControllerAdvice {
 
     @ExceptionHandler
     fun handleException(exception: BookNotFoundException): ResponseEntity<ErrorResponse> {
-        println(exception.message)
         exception.printStackTrace()
 
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
@@ -36,5 +34,4 @@ class BookingControllerAdvice {
                 )
             )
     }
-
 }

@@ -6,10 +6,10 @@ import java.time.Instant
 import java.util.*
 
 
-interface ReservationRepository {
-    suspend fun reserveBook(book: Book, reservationDate: Pair<Instant, Instant>): Boolean
+interface BookingRepository {
+    suspend fun reserveBook(book: Book, reservationDate: Pair<Instant, Instant>)
 
-    suspend fun removeReservation(book: Book): Boolean
+    suspend fun removeReservation(book: Book)
 
     suspend fun getReservationInfo(bookId: UUID): BookReservationDetailsResponse?
 
