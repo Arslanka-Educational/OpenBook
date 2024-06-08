@@ -35,6 +35,7 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
 
     implementation("com.atomikos:transactions-spring-boot3-starter:6.0.0")
+//    implementation("org.springframework.boot:spring-boot-starter-jta-atomikos:2.7.18")
     implementation("javax.transaction:jta:1.1")
 
     runtimeOnly("org.postgresql:postgresql")

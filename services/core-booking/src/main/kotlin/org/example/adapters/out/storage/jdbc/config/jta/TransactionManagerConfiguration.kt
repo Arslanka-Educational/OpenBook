@@ -1,6 +1,5 @@
 package org.example.adapters.out.storage.jdbc.config.jta
 
-import com.atomikos.icatch.jta.UserTransactionImp
 import com.atomikos.icatch.jta.UserTransactionManager
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -17,13 +16,6 @@ class TransactionManagerConfiguration {
         transactionManager.forceShutdown = true
         return transactionManager
     }
-
-//    @Bean
-//    fun atomikosUserTransaction(): UserTransactionImp {
-//        val userTransaction = UserTransactionImp()
-//        userTransaction.setTransactionTimeout(3000)
-//        return userTransaction
-//    }
 
     @Bean
     @Primary

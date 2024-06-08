@@ -1,5 +1,6 @@
 package org.example.domain.services
 
+import kotlinx.coroutines.runBlocking
 import openBook.model.BookReservationDetailsResponse
 import openBook.model.BookReserveResponse
 import openBook.model.BookStatus
@@ -30,7 +31,8 @@ class BookReservationService(
     }
 
     @Transactional(transactionManager = "jtaTransactionManager", rollbackFor = [Exception::class])
-    override suspend fun reserveBook(bookId: UUID): BookReserveResponse {
+    override fun reserveBook(bookId: UUID): BookReserveResponse = runBlocking {
+
         val book = bookDetailsRepository.getBookDetails(bookId)?.copy(
             status = BookStatus.uNAVAILABLE
         ) ?: throw BookNotFoundException("Book with id $bookId not found")
@@ -39,13 +41,12 @@ class BookReservationService(
         val reservedDueDate = reservedDate.plusSeconds(reservationTime)
 
         bookDetailsRepository.updateBook(book)
-        bookingRepository.reserveBook( //todo: check if everything is updated
+        bookingRepository.reserveBook(
             book = book,
             reservationDate = reservedDate to reservedDueDate
         )
-        throw Exception()
 
-        return BookReserveResponse(
+        BookReserveResponse(
             reservedDate = OffsetDateTime.ofInstant(reservedDate, ZoneOffset.UTC),
             reservationExpirationDate = OffsetDateTime.ofInstant(reservedDueDate, ZoneOffset.UTC)
         )
