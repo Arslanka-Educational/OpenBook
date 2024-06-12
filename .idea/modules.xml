@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/services/adapters/core-booking/OpenBook.services.adapters.core-booking.main.iml" filepath="$PROJECT_DIR$/.idea/modules/services/adapters/core-booking/OpenBook.services.adapters.core-booking.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/services/adapters/core-catalog-writer/OpenBook.services.adapters.core-catalog-writer.main.iml" filepath="$PROJECT_DIR$/.idea/modules/services/adapters/core-catalog-writer/OpenBook.services.adapters.core-catalog-writer.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/services/adapters/core-catalog/OpenBook.services.adapters.core-catalog.main.iml" filepath="$PROJECT_DIR$/.idea/modules/services/adapters/core-catalog/OpenBook.services.adapters.core-catalog.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/services/core-catalog-writer/OpenBook.services.core-catalog-writer.main.iml" filepath="$PROJECT_DIR$/.idea/modules/services/core-catalog-writer/OpenBook.services.core-catalog-writer.main.iml" />
+    </modules>
+  </component>
+</project>

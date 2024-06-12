@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel target="17">
+      <module name="OpenBook.clients.core-booking.main" target="17" />
+      <module name="OpenBook.clients.core-booking.test" target="17" />
+      <module name="OpenBook.clients.core-catalog.main" target="17" />
+      <module name="OpenBook.clients.core-catalog.test" target="17" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

@@ -1,0 +1,46 @@
+spring:
+  application:
+    name: core-booking
+  datasource:
+    jdbc:
+      core-booking:
+        username: ${BOOKING_SPRING_DATASOURCE_USERNAME}
+        password: ${BOOKING_SPRING_DATASOURCE_PASSWORD}
+        url: ${BOOKING_SPRING_DATASOURCE_URL}
+        xa:
+          data-source-class-name: org.postgresql.xa.PGXADataSource
+          properties:
+            username: ${BOOKING_SPRING_DATASOURCE_USERNAME}
+            password: ${BOOKING_SPRING_DATASOURCE_PASSWORD}
+            url: ${BOOKING_SPRING_DATASOURCE_URL}
+
+      core-catalog:
+        username: ${BOOKING_SPRING_DATASOURCE_USERNAME}
+        password: ${BOOKING_SPRING_DATASOURCE_PASSWORD}
+        url: ${BOOKING_SPRING_DATASOURCE_URL}
+        xa:
+          data-source-class-name: org.postgresql.xa.PGXADataSource
+          properties:
+            username: ${CATALOG_SPRING_DATASOURCE_USERNAME}
+            password: ${CATALOG_SPRING_DATASOURCE_PASSWORD}
+            url: ${CATALOG_SPRING_DATASOURCE_URL}
+  jta:
+    atomikos:
+      properties:
+        max-timeout: 900000
+
+server:
+  port: 8082
+
+application:
+  reservation:
+    reservation_time: 864000 # 10 days
+
+external:
+  core-catalog-writer:
+    url: ${CORE_CATALOG_WRITER_URL}
+
+logging:
+  level:
+    com:
+      atomikos: DEBUG

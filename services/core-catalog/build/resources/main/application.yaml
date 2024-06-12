@@ -1,0 +1,10 @@
+server:
+  port: 8084
+
+spring:
+  application:
+    name: core-catalog
+
+external:
+  core-search:
+    url: ${CORE_SEARCH_URL}

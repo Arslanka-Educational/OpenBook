@@ -1,0 +1,33 @@
+server:
+  port: 8080
+
+rsa:
+  public-key: classpath:certs/public.pem
+  private-key: classpath:certs/private.pem
+
+spring:
+  security:
+    authorities:
+      client:
+        - CLIENT
+      library:
+        - LIBRARIAN
+      moderator:
+        - MODERATOR
+
+  datasource:
+    jdbc:
+      core-client:
+        url: ${CORE_CLIENT_DATASOURCE_URL}
+        username: ${CORE_CLIENT_DATASOURCE_USERNAME}
+        password: ${CORE_CLIENT_DATASOURCE_PASSWORD}
+
+external:
+  core-booking:
+    url: ${CORE_BOOKING_URL}
+  core-catalog:
+    url: ${CORE_CATALOG_URL}
+  core-catalog-writer:
+    url: ${CORE_CATALOG_WRITER_URL}
+  core-search:
+    url: ${CORE_SEARCH_URL}

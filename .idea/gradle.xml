@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="gradleJvm" value="#JAVA_HOME" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/clients" />
+            <option value="$PROJECT_DIR$/clients/core-booking" />
+            <option value="$PROJECT_DIR$/clients/core-catalog" />
+            <option value="$PROJECT_DIR$/clients/core-catalog-writer" />
+            <option value="$PROJECT_DIR$/clients/core-client" />
+            <option value="$PROJECT_DIR$/clients/core-gateway" />
+            <option value="$PROJECT_DIR$/clients/core-search" />
+            <option value="$PROJECT_DIR$/libs" />
+            <option value="$PROJECT_DIR$/libs/core-booking" />
+            <option value="$PROJECT_DIR$/libs/core-catalog" />
+            <option value="$PROJECT_DIR$/libs/core-catalog-writer" />
+            <option value="$PROJECT_DIR$/libs/core-client" />
+            <option value="$PROJECT_DIR$/libs/core-gateway" />
+            <option value="$PROJECT_DIR$/libs/core-search" />
+            <option value="$PROJECT_DIR$/services" />
+            <option value="$PROJECT_DIR$/services/adapters" />
+            <option value="$PROJECT_DIR$/services/adapters/core-booking" />
+            <option value="$PROJECT_DIR$/services/adapters/core-catalog" />
+            <option value="$PROJECT_DIR$/services/adapters/core-catalog-writer" />
+            <option value="$PROJECT_DIR$/services/adapters/core-search" />
+            <option value="$PROJECT_DIR$/services/core-booking" />
+            <option value="$PROJECT_DIR$/services/core-catalog" />
+            <option value="$PROJECT_DIR$/services/core-catalog-writer" />
+            <option value="$PROJECT_DIR$/services/core-client" />
+            <option value="$PROJECT_DIR$/services/core-gateway" />
+            <option value="$PROJECT_DIR$/services/core-search" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>
