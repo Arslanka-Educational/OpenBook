@@ -10,3 +10,18 @@ external:
     url: ${CORE_CATALOG_WRITER_URL}
   core-search:
     url: ${CORE_SEARCH_URL}
+
+spring:
+  security:
+    authorities:
+      client: CLIENT
+      library: LIBRARY
+      moderator: MODERATOR
+  r2dbc:
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
+    url: ${SPRING_DATASOURCE_URL}
+
+rsa:
+  public-key: classpath:certs/public.pem
+  private-key: classpath:certs/private.pem

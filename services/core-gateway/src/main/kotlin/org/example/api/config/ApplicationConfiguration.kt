@@ -4,11 +4,13 @@ import org.example.CoreCatalogAdapter
 import org.example.CoreCatalogAdapterService
 import org.example.adapter.*
 import org.springframework.beans.factory.annotation.Value
+import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 
 @Configuration
-class AdapterConfiguration {
+@EnableConfigurationProperties(UserAuthorities::class)
+class ApplicationConfiguration {
     @Bean
     fun coreCatalogClient(@Value("\${external.core-catalog.url}") coreCatalogUrl: String): CoreCatalogAdapter =
         CoreCatalogAdapterService(coreCatalogUrl)

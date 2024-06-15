@@ -6,6 +6,7 @@ import openBook.model.BookReservationId
 import openBook.model.BookReserveResponse
 import org.example.adapter.CoreBookingAdapter
 import org.springframework.http.ResponseEntity
+import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.web.bind.annotation.RestController
 import java.util.*
 
