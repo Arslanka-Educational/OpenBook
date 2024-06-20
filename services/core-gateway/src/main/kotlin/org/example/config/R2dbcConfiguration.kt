@@ -1,4 +1,4 @@
-package org.example.api.config
+package org.example.config
 
 import io.r2dbc.postgresql.PostgresqlConnectionFactory
 import io.r2dbc.postgresql.PostgresqlConnectionFactoryProvider

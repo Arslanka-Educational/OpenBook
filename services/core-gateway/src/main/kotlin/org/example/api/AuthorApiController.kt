@@ -12,5 +12,5 @@ class AuthorApiController(
     private val coreCatalogAdapter: CoreCatalogAdapter
 ) : AuthorApi {
     override suspend fun v1AuthorDetailsAuthorIdGet(authorId: UUID): ResponseEntity<Author> =
-        ResponseEntity.ok().body(coreCatalogAdapter.getAuthorDetails(authorId))
+        coreCatalogAdapter.getAuthorDetails(authorId)
 }

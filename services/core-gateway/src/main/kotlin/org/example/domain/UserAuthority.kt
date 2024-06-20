@@ -6,8 +6,8 @@ enum class UserAuthority {
     MODERATOR;
 
     companion object {
-        const val CLIENT_AUTHORITY = "SCOPE_CLIENT"
-        const val LIBRARY_AUTHORITY = "SCOPE_LIBRARY"
-        const val MODERATOR_AUTHORITY = "SCOPE_MODERATOR"
+        const val CLIENT_AUTHORITY = "CLIENT"
+        const val LIBRARY_AUTHORITY = "LIBRARY"
+        const val MODERATOR_AUTHORITY = "MODERATOR"
     }
 }

@@ -1,4 +1,4 @@
-package org.example.api.config
+package org.example.config
 
 import com.nimbusds.jose.jwk.JWKSet
 import com.nimbusds.jose.jwk.RSAKey

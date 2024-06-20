@@ -14,9 +14,13 @@ external:
 spring:
   security:
     authorities:
-      client: CLIENT
-      library: LIBRARY
-      moderator: MODERATOR
+      CLIENT:
+        - CLIENT
+      LIBRARY:
+        - LIBRARY
+      MODERATOR:
+        - CLIENT
+        - MODERATOR
   r2dbc:
     username: ${SPRING_DATASOURCE_USERNAME}
     password: ${SPRING_DATASOURCE_PASSWORD}

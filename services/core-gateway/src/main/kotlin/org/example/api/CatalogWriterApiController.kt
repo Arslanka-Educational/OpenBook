@@ -4,6 +4,7 @@ import openBook.model.BookInfo
 import openBook.model.BookInfoCreateDetails
 import openBook.model.InsertBookIntoLibraryRequest
 import org.example.adapter.CoreCatalogWriterAdapter
+import org.example.domain.UserAuthority.Companion.MODERATOR_AUTHORITY
 import org.springframework.http.ResponseEntity
 import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.web.bind.annotation.RequestBody
@@ -21,9 +22,9 @@ class CatalogWriterApiController(
         produces = ["application/json"],
         consumes = ["application/json"]
     )
-    @PreAuthorize("hasAuthority('MODERATOR')")
+    @PreAuthorize("hasAuthority('$MODERATOR_AUTHORITY')")
     suspend fun v1BookCreateBookInfoPost(@RequestBody bookInfoCreateDetails: BookInfoCreateDetails): ResponseEntity<BookInfo> =
-        ResponseEntity.ok().body(coreCatalogWriterAdapter.createBookInfo(bookInfoCreateDetails))
+        coreCatalogWriterAdapter.createBookInfo(bookInfoCreateDetails)
 
 
     @RequestMapping(
@@ -32,8 +33,8 @@ class CatalogWriterApiController(
         produces = ["application/json"],
         consumes = ["application/json"]
     )
-    @PreAuthorize("hasAuthority('MODERATOR')")
+    @PreAuthorize("hasAuthority($MODERATOR_AUTHORITY)")
     suspend fun v1BookInsertPost(@RequestBody insertBookIntoLibraryRequest: InsertBookIntoLibraryRequest): ResponseEntity<Boolean> =
-        ResponseEntity.ok().body(coreCatalogWriterAdapter.insertBooks(insertBookIntoLibraryRequest))
+        coreCatalogWriterAdapter.insertBooks(insertBookIntoLibraryRequest)
 
 }

@@ -1,7 +1,7 @@
 package org.example.service
 
 import kotlinx.coroutines.runBlocking
-import org.example.api.config.UserAuthorities
+import org.example.config.UserAuthorities
 import org.example.api.dto.UserRegisterRequest
 import org.example.domain.AuthorizationUserDetails
 import org.example.repository.R2dbcUserRepository

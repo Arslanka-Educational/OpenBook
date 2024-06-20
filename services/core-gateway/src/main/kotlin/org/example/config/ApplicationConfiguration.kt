@@ -1,4 +1,4 @@
-package org.example.api.config
+package org.example.config
 
 import org.example.CoreCatalogAdapter
 import org.example.CoreCatalogAdapterService
