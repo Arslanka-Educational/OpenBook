@@ -32,7 +32,15 @@ dependencies {
     implementation(project(":services:adapters:core-catalog-writer"))
     implementation(project(":services:adapters:core-search"))
 
-    implementation("org.springframework.boot:spring-boot-starter-webflux")
+    implementation("org.springframework.boot:spring-boot-starter-data-r2dbc")
+    implementation("org.postgresql:r2dbc-postgresql")
+//    implementation("jakarta.servlet:jakarta.servlet-api:6.0.0")
+
+    implementation("org.springframework.boot:spring-boot-starter-security")
+    implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("io.projectreactor.kotlin:reactor-kotlin-extensions")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
+
+    implementation("org.springframework.boot:spring-boot-starter-oauth2-resource-server")
+    implementation(project(mapOf("path" to ":libs:core-catalog-writer")))
 }

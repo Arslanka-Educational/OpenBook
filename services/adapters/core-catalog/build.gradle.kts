@@ -25,6 +25,7 @@ tasks.jar {
 
 dependencies {
     implementation(project(":libs:core-catalog"))
-    implementation("org.springframework.boot:spring-boot-starter-webflux")
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
     implementation("io.projectreactor.kotlin:reactor-kotlin-extensions")
 }

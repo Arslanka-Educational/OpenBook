@@ -15,9 +15,9 @@ spring:
             url: ${BOOKING_SPRING_DATASOURCE_URL}
 
       core-catalog:
-        username: ${BOOKING_SPRING_DATASOURCE_USERNAME}
-        password: ${BOOKING_SPRING_DATASOURCE_PASSWORD}
-        url: ${BOOKING_SPRING_DATASOURCE_URL}
+        username: ${CATALOG_SPRING_DATASOURCE_USERNAME}
+        password: ${CATALOG_SPRING_DATASOURCE_PASSWORD}
+        url: ${CATALOG_SPRING_DATASOURCE_URL}
         xa:
           data-source-class-name: org.postgresql.xa.PGXADataSource
           properties:

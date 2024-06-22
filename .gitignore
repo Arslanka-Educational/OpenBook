@@ -2,9 +2,9 @@
 *.class
 
 **/.idea
-**/build
 **/.gradle
 **/java
+**/build
 # Log file
 *.log
 
@@ -13,8 +13,6 @@
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
-build
-.idea
 .gradle
 # Package Files #
 *.jar

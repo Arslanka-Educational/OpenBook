@@ -27,8 +27,8 @@ create table if not exists book_info
     name         varchar(256) not null,
     author_id    uuid         not null,
     publisher_id uuid         not null,
-    CONSTRAINT author_id_fk FOREIGN KEY (author_id) REFERENCES author (id),
-    CONSTRAINT publisher_id_fk FOREIGN KEY (publisher_id) REFERENCES publisher (id)
+    CONSTRAINT author_id_fk FOREIGN KEY (author_id) REFERENCES author (id)
+--     CONSTRAINT publisher_id_fk FOREIGN KEY (publisher_id) REFERENCES publisher (id)
 );
 
 create table if not exists book

@@ -5,41 +5,41 @@ info:
   version: 1.0.0
 paths:
   #  core-client
-  /v1/client/login:
-    post:
-      tags:
-        - Client
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '../../core-client/spec/definitions.yaml#/components/schemas/ClientLoginRequest'
-      responses:
-        200:
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '../../core-client/spec/responses.yaml#/components/schemas/JwtLoginResponse'
-
-  /v1/client/register:
-    post:
-      tags:
-        - Client
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '../../core-client/spec/definitions.yaml#/components/schemas/ClientRegisterRequest'
-      responses:
-        200:
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '../../core-client/spec/responses.yaml#/components/schemas/JwtLoginResponse'
+#  /v1/client/login:
+#    post:
+#      tags:
+#        - Client
+#      requestBody:
+#        required: true
+#        content:
+#          application/json:
+#            schema:
+#              $ref: '../../core-client/spec/definitions.yaml#/components/schemas/ClientLoginRequest'
+#      responses:
+#        200:
+#          description: OK
+#          content:
+#            application/json:
+#              schema:
+#                $ref: '../../core-client/spec/responses.yaml#/components/schemas/JwtLoginResponse'
+#
+#  /v1/client/register:
+#    post:
+#      tags:
+#        - Client
+#      requestBody:
+#        required: true
+#        content:
+#          application/json:
+#            schema:
+#              $ref: '../../core-client/spec/definitions.yaml#/components/schemas/ClientRegisterRequest'
+#      responses:
+#        200:
+#          description: OK
+#          content:
+#            application/json:
+#              schema:
+#                $ref: '../../core-client/spec/responses.yaml#/components/schemas/JwtLoginResponse'
 
   # core-catalog
   /v1/book/by-name/{book_name}:

@@ -12,5 +12,5 @@ class LibraryApiController(
     private val coreCatalogAdapter: CoreCatalogAdapter
 ) : LibraryApi {
     override suspend fun v1LibraryDetailsLibraryIdGet(libraryId: UUID): ResponseEntity<Library> =
-        ResponseEntity.ok().body(coreCatalogAdapter.getLibraryDetails(libraryId))
+        coreCatalogAdapter.getLibraryDetails(libraryId)
 }
