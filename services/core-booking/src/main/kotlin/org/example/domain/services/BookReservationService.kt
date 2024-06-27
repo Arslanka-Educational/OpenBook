@@ -30,7 +30,7 @@ class BookReservationService(
             ?: throw BookNotFoundException("Book with id: $bookId not found")
     }
 
-    @Transactional(transactionManager = "jtaTransactionManager", rollbackFor = [Exception::class])
+    @Transactional(transactionManager = "jtaTransactionManager")
     override fun reserveBook(bookId: UUID): BookReserveResponse = runBlocking{
 
         val book = bookDetailsRepository.getBookDetails(bookId)?.copy(
