@@ -17,7 +17,7 @@ class JwtService(
     fun generateToken(authorizationUserDetails: AuthorizationUserDetails): String {
         val now = Instant.now()
 
-        val scope: String = authorizationUserDetails.authorities.orEmpty().stream()
+        val scope: String = authorizationUserDetails.authorities.stream()
             .map { obj: GrantedAuthority -> obj.authority }
             .collect(Collectors.joining(" "))
 
